@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    text-decoration: none;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #121212;
+    color: #d0d0d0;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(145deg, #1c1c1c, #141414);
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    color: #ffffff;
+    padding: 2rem;
+    position: fixed;
+    height: 100vh;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.sidebar .nav-item {
+    color: #b0a7ff;
+    background-color: rgba(176, 167, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar .nav-item:hover,
+.sidebar .nav-item.active {
+    background-color: rgba(176, 167, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.settings, .logout {
+    margin-top: auto;
+    color: #7e57c2;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.settings:hover, .logout:hover {
+    color: #b388ff;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.profile-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.profile-info h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.profile-info p {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    padding: 2rem;
+    background-color: #181818;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    font-size: 1.9rem;
+    color: #bb86fc;
+    font-weight: 700;
+}
+
+.filters .filter-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background-color: #333;
+    color: #d0d0d0;
+}
+
+/* Stats Container */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: linear-gradient(145deg, #242424, #1a1a1a);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    color: #a0a0a0;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #bb86fc;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #8c8c8c;
+}
+
+/* Recent Bookings */
+.recent-bookings {
+    background: linear-gradient(145deg, #242424, #1a1a1a);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    margin-bottom: 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #d0d0d0;
+}
+
+.view-all-btn {
+    background-color: #bb86fc;
+    color: #121212;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.view-all-btn:hover {
+    background-color: #a75adf;
+}
+
+.bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #e0e0e0;
+}
+
+.bookings-table th {
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 2px solid #444;
+    color: #aaa;
+    font-weight: 500;
+}
+
+.bookings-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #444;
+}
+
+.status-pending {
+    background-color: #ffa726;
+    color: #121212;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+}
+
+.status-confirmed {
+    background-color: #66bb6a;
+    color: #121212;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+}
+
+.action-btn {
+    background-color: #bb86fc;
+    color: #121212;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #a75adf;
+}
+
+/* Room Status */
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.room-card {
+    background: linear-gradient(145deg, #242424, #1a1a1a);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.room-card:hover {
+    transform: translateY(-4px);
+}
+
+.room-card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+}
+
+.room-card p {
+    color: #a0a0a0;
+    margin-bottom: 0.5rem;
+}
+
+.room-card .status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+}
+
+.room-card.available .status {
+    background-color: #66bb6a;
+    color: #121212;
+}
+
+.room-card.occupied .status {
+    background-color: #ef5350;
+    color: #121212;
+}
+
+.room-card.cleaning .status {
+    background-color: #42a5f5;
+    color: #121212;
+}
+
+.room-card.maintenance .status {
+    background-color: #ffa726;
+    color: #121212;
+}

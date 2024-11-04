@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/checkin.css">
+    <link rel="stylesheet" href="css/header.css">
+    <title>Check-In - Radisson Blu Hotel</title>
+</head>
+<body>
+    <header>
+        <h1>Check-In</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="bookings.html">My Bookings</a>
+        </nav>
+    </header>
+    <main>
+        <section class="checkin-form">
+            <h2>Please Fill Your Check-In Details</h2>
+            <form id="checkinForm">
+                <input type="text" id="guestName" placeholder="Full Name" required>
+                <input type="email" id="guestEmail" placeholder="Email" required>
+                <input type="tel" id="guestPhone" placeholder="Phone Number" required>
+                <input type="date" id="checkInDate" required>
+                <input type="date" id="checkOutDate" required>
+                <button type="submit">Complete Check-In</button>
+            </form>
+        </section>
+        <section class="booking-summary">
+            <h2>Your Booking Summary</h2>
+            <table id="bookingTable">
+                <thead>
+                    <tr>
+                        <th>Room Type</th>
+                        <th>Check-In Date</th>
+                        <th>Check-Out Date</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody id="bookingSummaryBody">
+                    <!-- Booking details will be inserted here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile">
+            <div class="profile-image"></div>
+            <div class="profile-info">
+                <h2>Radisson Blu</h2>
+                <p>Dashboard</p>
+            </div>
+        </div>
+        
+        <nav class="nav-menu">
+            <div class="nav-item active">
+                <a href="dashboard.html">
+                    <i class="icon">🏠</i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="rooms.html">
+                    <i class="icon">🛏️</i>
+                    <span>Rooms</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="bookings.html">
+                    <i class="icon">📝</i>
+                    <span>Bookings</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="checkin.html">
+                    <i class="icon">✅</i>
+                    <span>Check-In</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="older_bookings.html">
+                    <i class="icon">📚</i>
+                    <span>Older Bookings</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="registration.html">
+                    <i class="icon">👥</i>
+                    <span>Registration</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="settings.html">
+                    <i class="icon">⚙️</i>
+                    <span>Settings</span>
+                </a>
+            </div>
+            <div class="nav-item logout">
+                <a href="logout.html">
+                    <i class="icon">🚪</i>
+                    <span>Log Out</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="top-nav">
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+        </div>
+        
+        <div class="header">
+            <h1>Hotel Dashboard</h1>
+            <div class="filters">
+                <select class="filter-select">
+                    <option>Today</option>
+                    <option>This Week</option>
+                    <option>This Month</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Available Rooms</h3>
+                    <div class="stat-value">24</div>
+                    <div class="stat-label">Out of 30 Total Rooms</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Today's Check-ins</h3>
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Pending: 3</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Today's Check-outs</h3>
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Completed: 2</div>
+                </div>
+                <div class="stat-card">
+                    <h3>New Bookings</h3>
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Last 24 hours</div>
+                </div>
+            </div>
+
+            <div class="recent-bookings">
+                <div class="section-header">
+                    <h3>Recent Bookings</h3>
+                    <button class="view-all-btn">View All</button>
+                </div>
+                <table class="bookings-table">
+                    <thead>
+                        <tr>
+                            <th>Guest Name</th>
+                            <th>Room</th>
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Smith</td>
+                            <td>201 - Deluxe</td>
+                            <td>Nov 2, 2024</td>
+                            <td>Nov 5, 2024</td>
+                            <td><span class="status-pending">Pending</span></td>
+                            <td><button class="action-btn">Check In</button></td>
+                        </tr>
+                        <tr>
+                            <td>Sarah Johnson</td>
+                            <td>305 - Suite</td>
+                            <td>Nov 2, 2024</td>
+                            <td>Nov 4, 2024</td>
+                            <td><span class="status-confirmed">Confirmed</span></td>
+                            <td><button class="action-btn">Check In</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="room-status">
+                <div class="section-header">
+                    <h3>Room Status</h3>
+                    <button class="view-all-btn">Manage Rooms</button>
+                </div>
+                <div class="room-grid">
+                    <div class="room-card available">
+                        <h4>201</h4>
+                        <p>Deluxe Room</p>
+                        <span class="status">Available</span>
+                    </div>
+                    <div class="room-card occupied">
+                        <h4>202</h4>
+                        <p>Deluxe Room</p>
+                        <span class="status">Occupied</span>
+                    </div>
+                    <div class="room-card cleaning">
+                        <h4>203</h4>
+                        <p>Suite</p>
+                        <span class="status">Cleaning</span>
+                    </div>
+                    <div class="room-card maintenance">
+                        <h4>204</h4>
+                        <p>Standard Room</p>
+                        <span class="status">Maintenance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

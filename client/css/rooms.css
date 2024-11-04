@@ -1,0 +1,106 @@
+/* General Body Styles */
+body {
+    background-color: #f5f5f5; /* Light background for contrast */
+    font-family: 'Arial', sans-serif; /* Consistent font for the entire page */
+}
+
+/* Room Types Section */
+.room-types {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px auto;
+    padding: 20px; /* Add some padding around the room types section */
+}
+
+/* Individual Room Card */
+.room {
+    background-color: white; /* White background for room cards */
+    border-radius: 10px; /* Slightly increased border radius for softer corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow for depth */
+    padding: 30px; /* Increased padding for better spacing */
+    margin: 15px; /* Margin between room cards */
+    text-align: center;
+    flex: 1 0 220px; /* Flex settings for responsiveness */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transition effects for hover */
+}
+
+/* Room Card Title */
+.room h3 {
+    margin-top: 0;
+    font-size: 1.8em; /* Larger font for room titles */
+    color: #333; /* Darker color for better readability */
+}
+
+/* Room Description */
+.room p {
+    margin: 10px 0;
+    color: #666; /* Lighter color for description text */
+}
+
+/* Button Styles */
+.room .btn {
+    display: inline-block; /* Ensure button is treated as a block for padding */
+    background-color: #0073e6; /* Primary button color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    padding: 12px 25px; /* Increased padding for a better touch target */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    font-size: 1em; /* Standard font size */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition effects */
+}
+
+/* Button Hover Effect */
+.room .btn:hover {
+    background-color: #005bb5; /* Darker shade on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Room Card Hover Effect */
+.room:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .room {
+        flex: 1 0 100%; /* Full width on small screens */
+    }
+}
+
+/* header.css */
+
+header {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    font-family: 'Georgia', serif;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    padding: 8px 15px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #0073e6;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - Hotel Management Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script>
+        function confirmLogout() {
+            const confirmation = confirm("Are you sure you want to log out?");
+            if (confirmation) {
+                window.location.href = "dashboard.html";
+            } else {
+                window.location.href = "dashboard.html";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile">
+            <div class="profile-image"></div>
+            <div class="profile-info">
+                <h2>Hotel Admin</h2>
+                <p>Dashboard</p>
+            </div>
+        </div>
+        
+        <nav class="nav-menu">
+            <div class="nav-item">
+                <a href="dashboard.html">
+                    <i class="icon">🏠</i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="rooms.html">
+                    <i class="icon">🛏️</i>
+                    <span>Rooms</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="bookings.html">
+                    <i class="icon">📝</i>
+                    <span>Bookings</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="checkin.html">
+                    <i class="icon">✅</i>
+                    <span>Check-In</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="older_bookings.html">
+                    <i class="icon">📚</i>
+                    <span>Older Bookings</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="registration.html">
+                    <i class="icon">👥</i>
+                    <span>Registration</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="settings.html">
+                    <i class="icon">⚙️</i>
+                    <span>Settings</span>
+                </a>
+            </div>
+            <div class="nav-item active">
+                <a href="javascript:void(0);" onclick="confirmLogout()">
+                    <i class="icon">🚪</i>
+                    <span>Log Out</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Logout Confirmation</h1>
+        </div>
+
+        <div class="logout-message">
+            <h2>Are you sure you want to log out?</h2>
+            <button onclick="confirmLogout()" class="confirm-btn">Yes, Log Out</button>
+            <button onclick="window.location.href='dashboard.html';" class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+</body>
+</html>

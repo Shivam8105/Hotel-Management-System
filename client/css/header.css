@@ -1,0 +1,54 @@
+/* header.css */
+
+/* General Header Styles */
+header {
+    background: linear-gradient(135deg, #0073e6, #005bb5);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Header Title */
+header h1 {
+    font-size: 2.8em;
+    margin: 0;
+    font-family: 'Georgia', serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Navigation Styles */
+nav {
+    margin-top: 15px;
+}
+
+/* Navigation Links */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+/* Navigation Links Hover Effects */
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffcc00; /* Gold color on hover */
+    transform: scale(1.05);
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    nav a {
+        margin: 0 10px;
+        padding: 8px 15px;
+    }
+}

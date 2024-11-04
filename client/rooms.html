@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/rooms.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <title>Room Types - Radisson Blu Hotel</title>
+</head>
+<body>
+    <header>
+        <h1>Room Types</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="registration.html">Register</a>
+            <a href="bookings.html">My Bookings</a>
+        </nav>
+    </header>
+    <main>
+        <section class="room-types">
+            <h2>Our Rooms</h2>
+            <div class="room">
+                <h3>Superior Room</h3>
+                <p>Price: $150 per night</p>
+                <p>Rating: ★★★★★</p>
+                <p><i class="wifi-icon">🌐</i> Wi-Fi Available</p>
+                <button class="btn" onclick="bookRoom('Superior Room', 150)">Book Now</button>
+            </div>
+            <div class="room">
+                <h3>Super Deluxe Room</h3>
+                <p>Price: $200 per night</p>
+                <p>Rating: ★★★★</p>
+                <p><i class="wifi-icon">🌐</i> Wi-Fi Available</p>
+                <button class="btn" onclick="bookRoom('Super Deluxe Room', 200)">Book Now</button>
+            </div>
+            <div class="room">
+                <h3>Deluxe Room</h3>
+                <p>Price: $120 per night</p>
+                <p>Rating: ★★★</p>
+                <p><i class="wifi-icon">🌐</i> Wi-Fi Available</p>
+                <button class="btn" onclick="bookRoom('Deluxe Room', 120)">Book Now</button>
+            </div>
+            <div class="room">
+                <h3>Single Room</h3>
+                <p>Price: $80 per night</p>
+                <p>Rating: ★★</p>
+                <p><i class="wifi-icon">🌐</i> Wi-Fi Available</p>
+                <button class="btn" onclick="bookRoom('Single Room', 80)">Book Now</button>
+            </div>
+        </section>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>
