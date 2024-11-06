@@ -1,0 +1,142 @@
+/* Main Content Styles */
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+    background-color: #f5f6fa;
+    min-height: 100vh;
+}
+
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.settings-container h1 {
+    color: #bb86fc;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+/* Settings Section Styles */
+.settings-section {
+    margin-bottom: 2rem;
+}
+
+.settings-section h2 {
+    color: #bb86fc;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.settings-card {
+    background-color: black;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Setting Item Styles */
+.setting-item {
+    margin-bottom: 1.2rem;
+}
+
+.setting-item:last-child {
+    margin-bottom: 0;
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #bb86fc;
+    font-weight: 500;
+}
+
+.setting-item input[type="text"],
+.setting-item input[type="email"],
+.setting-item input[type="tel"],
+.setting-item input[type="password"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #dcdde1;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+.setting-item input:focus {
+    outline: none;
+    border-color: #bb86fc;
+}
+
+/* Checkbox Styles */
+.setting-item.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.setting-item.checkbox label {
+    margin-bottom: 0;
+}
+
+.setting-item.checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Button Styles */
+.button-group {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-save,
+.btn-cancel {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-save {
+    background-color: rgba(0, 128, 0, 0.789);
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: rgba(0, 128, 0, 0.625);
+}
+
+.btn-cancel {
+    background-color: #e0e0e0;
+    color: #576574;
+}
+
+.btn-cancel:hover {
+    background-color: #c8c8c8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .settings-container {
+        padding: 0 1rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn-save,
+    .btn-cancel {
+        width: 100%;
+    }
+}

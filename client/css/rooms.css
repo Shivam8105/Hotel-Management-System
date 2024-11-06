@@ -1,106 +1,131 @@
-/* General Body Styles */
-body {
-    background-color: #f5f5f5; /* Light background for contrast */
-    font-family: 'Arial', sans-serif; /* Consistent font for the entire page */
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Room Types Section */
-.room-types {
+/* Sidebar Styling */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(145deg, #1c1c1c, #141414);
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    color: #ffffff;
+    padding: 2rem;
+    position: fixed;
+    height: 100vh;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.profile {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 20px auto;
-    padding: 20px; /* Add some padding around the room types section */
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
 }
 
-/* Individual Room Card */
-.room {
-    background-color: white; /* White background for room cards */
-    border-radius: 10px; /* Slightly increased border radius for softer corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow for depth */
-    padding: 30px; /* Increased padding for better spacing */
-    margin: 15px; /* Margin between room cards */
-    text-align: center;
-    flex: 1 0 220px; /* Flex settings for responsiveness */
-    transition: transform 0.3s, box-shadow 0.3s; /* Transition effects for hover */
+.profile-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Room Card Title */
-.room h3 {
-    margin-top: 0;
-    font-size: 1.8em; /* Larger font for room titles */
-    color: #333; /* Darker color for better readability */
+.profile-info h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
-/* Room Description */
-.room p {
-    margin: 10px 0;
-    color: #666; /* Lighter color for description text */
+.profile-info p {
+    font-size: 0.9rem;
+    opacity: 0.7;
 }
 
-/* Button Styles */
-.room .btn {
-    display: inline-block; /* Ensure button is treated as a block for padding */
-    background-color: #0073e6; /* Primary button color */
-    color: white; /* Button text color */
-    border: none; /* No border */
-    padding: 12px 25px; /* Increased padding for a better touch target */
-    border-radius: 5px; /* Rounded corners */
-    text-decoration: none; /* Remove underline */
-    font-size: 1em; /* Standard font size */
-    transition: background-color 0.3s, transform 0.2s; /* Smooth transition effects */
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
-/* Button Hover Effect */
-.room .btn:hover {
-    background-color: #005bb5; /* Darker shade on hover */
-    transform: translateY(-2px); /* Lift effect on hover */
+.nav-item {
+    color: #b0a7ff;
+    background-color: rgba(176, 167, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Room Card Hover Effect */
-.room:hover {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
-    transform: translateY(-5px); /* Lift effect on hover */
+.nav-item:hover,
+.nav-item.active {
+    background-color: rgba(176, 167, 255, 0.3);
+    color: #e0e0e0;
 }
 
-/* Responsive Styles */
-@media (max-width: 600px) {
-    .room {
-        flex: 1 0 100%; /* Full width on small screens */
-    }
+.nav-item a {
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
-/* header.css */
+.logout {
+    margin-top: auto;
+}
 
-header {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+/* Main Content (Room Listing) */
+main {
+    margin-left: 300px;  /* Space for the sidebar */
+    padding: 20px;
 }
 
 header h1 {
-    font-size: 2.5em;
-    margin: 0;
-    font-family: 'Georgia', serif;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-nav {
+/* Room Types */
+.room-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.room {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+}
+
+.room h3 {
+    margin-bottom: 10px;
+}
+
+.room button {
     margin-top: 10px;
-}
-
-nav a {
+    padding: 10px;
+    background-color: #6200ea;
     color: white;
-    text-decoration: none;
-    margin: 0 20px;
-    font-weight: bold;
-    padding: 8px 15px;
-    transition: background-color 0.3s, color 0.3s;
+    border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-nav a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    color: #0073e6;
+.room button:hover {
+    background-color: #3700b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        margin-left: 0;
+    }
+
+    .room-types {
+        flex-direction: column;
+        align-items: center;
+    }
 }

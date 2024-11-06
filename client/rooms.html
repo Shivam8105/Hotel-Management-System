@@ -6,19 +6,84 @@
     <link rel="stylesheet" href="css/rooms.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/sidebar.css"> <!-- Assuming you have a separate sidebar CSS file -->
     <title>Room Types - Radisson Blu Hotel</title>
 </head>
 <body>
-    <header>
-        <h1>Room Types</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="login.html">Login</a>
-            <a href="registration.html">Register</a>
-            <a href="bookings.html">My Bookings</a>
+    <!-- Sidebar Section -->
+    <div class="sidebar">
+        <div class="profile">
+            <div class="profile-image"></div>
+            <div class="profile-info">
+                <h2>Radisson Blu</h2>
+                <p>Dashboard</p>
+            </div>
+        </div>
+        
+        <nav class="nav-menu">
+            <div class="nav-item">
+                <a href="dashboard.html">
+                    <i class="icon">🏠</i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-item active">
+                <a href="rooms.html">
+                    <i class="icon">🛏️</i>
+                    <span>Rooms</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="bookings.html">
+                    <i class="icon">📝</i>
+                    <span>Bookings</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="checkin.html">
+                    <i class="icon">✅</i>
+                    <span>Check-In</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="older_bookings.html">
+                    <i class="icon">📚</i>
+                    <span>Older Bookings</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="registration.html">
+                    <i class="icon">👥</i>
+                    <span>Registration</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="settings.html">
+                    <i class="icon">⚙️</i>
+                    <span>Settings</span>
+                </a>
+            </div>
+            <div class="nav-item logout">
+                <a href="logout.html">
+                    <i class="icon">🚪</i>
+                    <span>Log Out</span>
+                </a>
+            </div>
         </nav>
-    </header>
+    </div>
+
+    <!-- Main Content Section -->
     <main>
+        <header>
+            <h1>Room Types</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="login.html">Login</a>
+                <a href="registration.html">Register</a>
+                <a href="bookings.html">My Bookings</a>
+            </nav>
+        </header>
+
         <section class="room-types">
             <h2>Our Rooms</h2>
             <div class="room">
@@ -51,6 +116,7 @@
             </div>
         </section>
     </main>
+
     <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Radisson Blu</title>
+    <link rel="stylesheet" href="css/setting.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile">
+            <div class="profile-image"></div>
+            <div class="profile-info">
+                <h2>Radisson Blu</h2>
+                <p>Dashboard</p>
+            </div>
+        </div>
+        
+        <nav class="nav-menu">
+            <div class="nav-item">
+                <a href="dashboard.html">
+                    <i class="icon">🏠</i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="rooms.html">
+                    <i class="icon">🛏️</i>
+                    <span>Rooms</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="bookings.html">
+                    <i class="icon">📝</i>
+                    <span>Bookings</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="checkin.html">
+                    <i class="icon">✅</i>
+                    <span>Check-In</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="older_bookings.html">
+                    <i class="icon">📚</i>
+                    <span>Older Bookings</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="registration.html">
+                    <i class="icon">👥</i>
+                    <span>Registration</span>
+                </a>
+            </div>
+            <div class="nav-item active">
+                <a href="settings.html">
+                    <i class="icon">⚙️</i>
+                    <span>Settings</span>
+                </a>
+            </div>
+            <div class="nav-item logout">
+                <a href="logout.html">
+                    <i class="icon">🚪</i>
+                    <span>Log Out</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <div class="settings-container">
+            <h1>Settings</h1>
+            
+            <div class="settings-section">
+                <h2>Profile Settings</h2>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <label for="hotel-name">Hotel Name</label>
+                        <input type="text" id="hotel-name" value="Radisson Blu">
+                    </div>
+                    <div class="setting-item">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" value="contact@radissonblu.com">
+                    </div>
+                    <div class="setting-item">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" value="+1 234 567 890">
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Security Settings</h2>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <label for="current-password">Current Password</label>
+                        <input type="password" id="current-password">
+                    </div>
+                    <div class="setting-item">
+                        <label for="new-password">New Password</label>
+                        <input type="password" id="new-password">
+                    </div>
+                    <div class="setting-item">
+                        <label for="confirm-password">Confirm New Password</label>
+                        <input type="password" id="confirm-password">
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Notification Settings</h2>
+                <div class="settings-card">
+                    <div class="setting-item checkbox">
+                        <input type="checkbox" id="email-notifications" checked>
+                        <label for="email-notifications">Email Notifications</label>
+                    </div>
+                    <div class="setting-item checkbox">
+                        <input type="checkbox" id="sms-notifications" checked>
+                        <label for="sms-notifications">SMS Notifications</label>
+                    </div>
+                    <div class="setting-item checkbox">
+                        <input type="checkbox" id="browser-notifications">
+                        <label for="browser-notifications">Browser Notifications</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-save">Save Changes</button>
+                <button class="btn-cancel">Cancel</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

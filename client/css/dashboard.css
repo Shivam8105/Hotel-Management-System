@@ -13,7 +13,7 @@ body {
     color: #d0d0d0;
 }
 
-/* Sidebar */
+/* Sidebar Styles */
 .sidebar {
     width: 280px;
     background: linear-gradient(145deg, #1c1c1c, #141414);
@@ -24,31 +24,6 @@ body {
     position: fixed;
     height: 100vh;
     box-shadow: 4px 0 15px rgba(0, 0, 0, 0.6);
-}
-
-.sidebar .nav-item {
-    color: #b0a7ff;
-    background-color: rgba(176, 167, 255, 0.08);
-    border-radius: 10px;
-    padding: 0.75rem 1rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.sidebar .nav-item:hover,
-.sidebar .nav-item.active {
-    background-color: rgba(176, 167, 255, 0.3);
-    color: #e0e0e0;
-}
-
-.settings, .logout {
-    margin-top: auto;
-    color: #7e57c2;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.settings:hover, .logout:hover {
-    color: #b388ff;
 }
 
 .profile {
@@ -81,7 +56,32 @@ body {
     gap: 0.75rem;
 }
 
-/* Main Content */
+.nav-item {
+    color: #b0a7ff;
+    background-color: rgba(176, 167, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background-color: rgba(176, 167, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.nav-item a {
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logout {
+    margin-top: auto;
+}
+
+/* Main Content Styles */
 .main-content {
     flex: 1;
     margin-left: 280px;
@@ -89,20 +89,44 @@ body {
     background-color: #181818;
 }
 
-.header {
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
 }
 
-.header h1 {
+.header-container h1 {
     font-size: 1.9rem;
     color: #bb86fc;
     font-weight: 700;
 }
 
-.filters .filter-select {
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.top-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.top-nav a {
+    color: #bb86fc;
+    padding: 0.5rem 1rem;
+    border: 1px solid #bb86fc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.top-nav a:hover {
+    background-color: #bb86fc;
+    color: #121212;
+}
+
+.filter-select {
     padding: 0.5rem 1rem;
     border: 1px solid #444;
     border-radius: 8px;
@@ -110,7 +134,7 @@ body {
     color: #d0d0d0;
 }
 
-/* Stats Container */
+/* Stats Container Styles */
 .stats-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -148,7 +172,7 @@ body {
     color: #8c8c8c;
 }
 
-/* Recent Bookings */
+/* Recent Bookings Styles */
 .recent-bookings {
     background: linear-gradient(145deg, #242424, #1a1a1a);
     padding: 1.5rem;
@@ -162,7 +186,6 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-    color: #d0d0d0;
 }
 
 .view-all-btn {
@@ -182,7 +205,6 @@ body {
 .bookings-table {
     width: 100%;
     border-collapse: collapse;
-    color: #e0e0e0;
 }
 
 .bookings-table th {
@@ -226,7 +248,14 @@ body {
     background-color: #a75adf;
 }
 
-/* Room Status */
+/* Room Status Styles */
+.room-status {
+    background: linear-gradient(145deg, #242424, #1a1a1a);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
 .room-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
