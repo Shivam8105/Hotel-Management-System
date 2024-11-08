@@ -6,7 +6,7 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f4f8;
+    background-color: #121212;
 }
 
 .wrapper {
@@ -14,7 +14,7 @@ body {
 }
 
 .sidebar {
-    width: 280px;
+    width: 380px;
     background: linear-gradient(145deg, #1c1c1c, #141414);
     border-top-right-radius: 35px;
     border-bottom-right-radius: 35px;
@@ -99,11 +99,11 @@ header {
 
 header h1 {
     font-size: 2.5em;
-    color: #0073e6;
+    color: #b0a7ff;
 }
 
 .user-info a {
-    background-color: #0073e6;
+    background-color: #b0a7ff;
     color: white;
     border: none;
     padding: 8px 12px;
@@ -116,13 +116,13 @@ header h1 {
 }
 
 .user-info a:hover {
-    background-color: #005bb5;
+    background-color: #b0a7ff;
     transform: scale(1.05);
 }
 
 .checkin-form,
 .booking-summary {
-    background-color: #fff;
+    background-color: rgba(176, 167, 255, 0.08);
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -131,26 +131,32 @@ header h1 {
 .checkin-form h2,
 .booking-summary h2 {
     font-size: 1.8em;
-    color: #0073e6;
+    color: #b0a7ff;
     margin-bottom: 20px;
+}
+
+.checkin-form input::placeholder{
+    color: white;
 }
 
 .checkin-form input {
     padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid black;
+    background-color: rgba(176, 167, 255, 0.08);
     border-radius: 5px;
+    color: white;
     font-size: 1em;
     transition: border-color 0.3s;
 }
 
 .checkin-form input:focus {
-    border-color: #0073e6;
+    border-color: #b0a7ff;
     outline: none;
 }
 
 .checkin-form button {
-    background-color: #0073e6;
+    background-color: #b0a7ff;
     color: white;
     border: none;
     padding: 12px;
@@ -162,7 +168,7 @@ header h1 {
 }
 
 .checkin-form button:hover {
-    background-color: #005bb5;
+    background-color: #b0a7ff;
     transform: scale(1.05);
 }
 
@@ -178,7 +184,8 @@ header h1 {
 }
 
 .booking-summary th {
-    background-color: #f2f2f2;
+    background-color: rgba(176, 167, 255, 0.08);
+    color: white;
 }
 
 @media (max-width: 768px) {
