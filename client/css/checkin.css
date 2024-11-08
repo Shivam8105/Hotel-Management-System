@@ -1,6 +1,7 @@
-/* checkin.css */
+*{
+    text-decoration: none;
+}
 
-/* General Body Styles */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -8,36 +9,133 @@ body {
     background-color: #f0f4f8;
 }
 
-/* Main Container */
-.container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+.wrapper {
+    display: flex;
 }
 
-/* Header Styles */
-/* h1 {
-    text-align: center;
-    font-size: 2.5em;
-    color: #0073e6;
-    margin-bottom: 20px;
-} */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(145deg, #1c1c1c, #141414);
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    color: #ffffff;
+    padding: 2rem;
+    height: 100vh;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.6);
+}
 
-/* Form Styles */
-form {
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.profile-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.profile-info h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.profile-info p {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.nav-menu {
     display: flex;
     flex-direction: column;
+    gap: 0.75rem;
 }
 
-/* Input Styles */
-input[type="text"],
-input[type="email"],
-input[type="date"],
-input[type="number"],
-select {
+.nav-item {
+    color: #b0a7ff;
+    background-color: rgba(176, 167, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background-color: rgba(176, 167, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.nav-item a {
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logout {
+    margin-top: auto;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #0073e6;
+}
+
+.user-info a {
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-left: 10px;
+}
+
+.user-info a:hover {
+    background-color: #005bb5;
+    transform: scale(1.05);
+}
+
+.checkin-form,
+.booking-summary {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.checkin-form h2,
+.booking-summary h2 {
+    font-size: 1.8em;
+    color: #0073e6;
+    margin-bottom: 20px;
+}
+
+.checkin-form input {
     padding: 12px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -46,17 +144,12 @@ select {
     transition: border-color 0.3s;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="date"]:focus,
-input[type="number"]:focus,
-select:focus {
+.checkin-form input:focus {
     border-color: #0073e6;
     outline: none;
 }
 
-/* Button Styles */
-button {
+.checkin-form button {
     background-color: #0073e6;
     color: white;
     border: none;
@@ -68,26 +161,43 @@ button {
     margin-top: 15px;
 }
 
-button:hover {
+.checkin-form button:hover {
     background-color: #005bb5;
     transform: scale(1.05);
 }
 
-/* Footer Styles */
-footer {
-    text-align: center;
-    margin-top: 30px;
-    color: #777;
+.booking-summary table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-/* Responsive Styles */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2em;
+.booking-summary th, .booking-summary td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.booking-summary th {
+    background-color: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
     }
 
-    button {
-        padding: 10px;
-        font-size: 1em;
+    .sidebar {
+        width: auto;
+        height: auto;
+        border-radius: 0;
+        padding: 1.5rem;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .content-container {
+        grid-template-columns: 1fr;
     }
 }
