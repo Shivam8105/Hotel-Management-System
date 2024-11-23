@@ -1,11 +1,19 @@
-/* Global Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    text-decoration: none;
 }
 
-/* Sidebar Styling */
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #121212;
+    color: #d0d0d0;
+}
+
+/* Sidebar Styles */
 .sidebar {
     width: 280px;
     background: linear-gradient(145deg, #1c1c1c, #141414);
@@ -73,59 +81,105 @@
     margin-top: auto;
 }
 
-/* Main Content (Room Listing) */
 main {
-    margin-left: 300px;  /* Space for the sidebar */
-    padding: 20px;
+    flex: 1;
+    margin-left: 280px;
+    padding: 2rem;
+    background-color: #181818;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
 header h1 {
-    color: #333;
-    margin-bottom: 20px;
+    font-size: 1.9rem;
+    color: #bb86fc;
+    font-weight: 700;
 }
 
-/* Room Types */
-.room-types {
+header nav {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    gap: 1rem;
+}
+
+header nav a {
+    color: #bb86fc;
+    padding: 0.5rem 1rem;
+    border: 1px solid #bb86fc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+header nav a:hover {
+    background-color: #bb86fc;
+    color: #121212;
+}
+
+.room-types {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.room-types h2{
+    font-size: 25px;
 }
 
 .room {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
+    background: linear-gradient(145deg, #242424, #1a1a1a);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     text-align: center;
+    transition: transform 0.2s;
+}
+
+.room:hover {
+    transform: translateY(-5px);
 }
 
 .room h3 {
-    margin-bottom: 10px;
+    color: #bb86fc;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
 }
 
-.room button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #6200ea;
-    color: white;
+.room p {
+    color: #a0a0a0;
+    margin-bottom: 0.5rem;
+}
+
+.room .btn {
+    background-color: #bb86fc;
+    color: #121212;
     border: none;
-    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
 }
 
-.room button:hover {
-    background-color: #3700b3;
+.room .btn:hover {
+    background-color: #a75adf;
 }
 
-/* Responsive Design */
+@media (max-width: 1200px) {
+    .room-types {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     main {
         margin-left: 0;
     }
 
     .room-types {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
     }
 }
