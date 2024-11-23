@@ -1,4 +1,3 @@
--- Users Table
 CREATE TABLE Users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -11,7 +10,6 @@ CREATE TABLE Users (
     role ENUM('guest', 'admin', 'staff') DEFAULT 'guest'
 );
 
--- Room Types Table
 CREATE TABLE RoomTypes (
     room_type_id INT PRIMARY KEY AUTO_INCREMENT,
     type_name VARCHAR(50) NOT NULL,
@@ -20,7 +18,6 @@ CREATE TABLE RoomTypes (
     max_occupancy INT NOT NULL
 );
 
--- Rooms Table
 CREATE TABLE Rooms (
     room_id INT PRIMARY KEY AUTO_INCREMENT,
     room_number VARCHAR(10) UNIQUE NOT NULL,
@@ -29,7 +26,6 @@ CREATE TABLE Rooms (
     FOREIGN KEY (room_type_id) REFERENCES RoomTypes(room_type_id)
 );
 
--- Bookings Table
 CREATE TABLE Bookings (
     booking_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
@@ -56,7 +52,6 @@ CREATE TABLE CheckInDetails (
     FOREIGN KEY (booking_id) REFERENCES Bookings(booking_id)
 );
 
--- Payment Table
 CREATE TABLE Payments (
     payment_id INT PRIMARY KEY AUTO_INCREMENT,
     booking_id INT NOT NULL,
@@ -66,21 +61,17 @@ CREATE TABLE Payments (
     status ENUM('pending', 'completed', 'failed'),
     FOREIGN KEY (booking_id) REFERENCES Bookings(booking_id)
 );
-
--- Indexes for performance optimization
 CREATE INDEX idx_user_bookings ON Bookings(user_id);
 CREATE INDEX idx_room_bookings ON Bookings(room_id);
 CREATE INDEX idx_booking_status ON Bookings(status);
 CREATE INDEX idx_room_status ON Rooms(status);
 
--- Sample Data Insertion for Room Types
 INSERT INTO RoomTypes (type_name, description, base_price, max_occupancy) VALUES
 ('single', 'Basic room for solo travelers', 75.00, 1),
 ('superior', 'Comfortable room with additional amenities', 100.00, 2),
 ('deluxe', 'Spacious room with enhanced features', 150.00, 3),
 ('super deluxe', 'Luxury room with premium services', 250.00, 4);
 
--- Sample Rooms
 INSERT INTO Rooms (room_number, room_type_id, status) VALUES
 ('201', 2, 'available'),
 ('202', 2, 'occupied'),
