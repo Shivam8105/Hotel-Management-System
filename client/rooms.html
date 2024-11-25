@@ -41,7 +41,7 @@
             <div class="nav-item">
                 <a href="checkout.html">
                     <i class="icon">✅</i>
-                    <span>Check-Out</span>
+                    <span>Payments</span>
                 </a>
             </div>
             <div class="nav-item">
@@ -54,12 +54,6 @@
                 <a href="registration.html">
                     <i class="icon">👥</i>
                     <span>Registration</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="settings.html">
-                    <i class="icon">⚙️</i>
-                    <span>Settings</span>
                 </a>
             </div>
             <div class="nav-item logout">
@@ -89,34 +83,32 @@
                 <p>Price: $150 per night</p>
                 <p>Rating: ★★★★★</p>
                 <p><i class="wifi-icon">🌐</i> Wi-Fi Available</p>
-                <button class="btn" onclick="bookRoom('Superior Room', 150)">Book Now</button>
+                <button class="btn" onclick="window.location.href='./booking.php?room_type=Superior Room&room_price=150'">Book Now</button>
             </div>
             <div class="room">
                 <h3>Super Deluxe Room</h3>
                 <p>Price: $200 per night</p>
                 <p>Rating: ★★★★</p>
                 <p><i class="wifi-icon">🌐</i> Wi-Fi Available</p>
-                <button class="btn" onclick="bookRoom('Super Deluxe Room', 200)">Book Now</button>
+                <button class="btn" onclick="window.location.href='./booking.php?room_type=Super_Deluxe&room_price=200'">Book Now</button>
             </div>
             <div class="room">
                 <h3>Deluxe Room</h3>
                 <p>Price: $120 per night</p>
                 <p>Rating: ★★★</p>
                 <p><i class="wifi-icon">🌐</i> Wi-Fi Available</p>
-                <button class="btn" onclick="bookRoom('Deluxe Room', 120)">Book Now</button>
+                <button class="btn" onclick="window.location.href='./booking.php?room_type=Deluxe&room_price=250'">Book Now</button>
             </div>
             <div class="room">
                 <h3>Single Room</h3>
                 <p>Price: $80 per night</p>
                 <p>Rating: ★★</p>
                 <p><i class="wifi-icon">🌐</i> Wi-Fi Available</p>
-                <button class="btn" onclick="bookRoom('Single Room', 80)">Book Now</button>
+                <button class="btn" onclick="window.location.href='./booking.php?room_type=Single_Room&room_price=50'">Book Now</button>
             </div>
         </section>
     </main>
 
     <script src="js/script.js"></script>
-    <script src="js/api.js"></script>
-
 </body>
 </html>

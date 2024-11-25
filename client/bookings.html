@@ -38,7 +38,7 @@
             <div class="nav-item">
                 <a href="checkout.html">
                     <i class="icon">✅</i>
-                    <span>Check-Out</span>
+                    <span>Payments</span>
                 </a>
             </div>
             <div class="nav-item">
@@ -51,12 +51,6 @@
                 <a href="registration.html">
                     <i class="icon">👥</i>
                     <span>Registration</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="settings.html">
-                    <i class="icon">⚙️</i>
-                    <span>Settings</span>
                 </a>
             </div>
             <div class="nav-item logout">
@@ -81,6 +75,24 @@
             <ul id="bookingList"></ul>
         </section>
     </main>
-    <script src="js/script.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/php/get_bookings.php')
+        .then(response => response.json())
+        .then(bookings => {
+            const bookingList = document.getElementById('bookingList');
+            bookings.forEach(booking => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    Room: ${booking.room_type} | 
+                    Price: $${booking.room_price} | 
+                    Check-in: ${booking.check_in_date} | 
+                    Check-out: ${booking.check_out_date}
+                `;
+                bookingList.appendChild(li);
+            });
+        });
+});
+</script>
 </body>
 </html>
