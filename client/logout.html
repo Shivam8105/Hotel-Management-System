@@ -9,9 +9,8 @@
         function confirmLogout() {
             const confirmation = confirm("Are you sure you want to log out?");
             if (confirmation) {
-                window.location.href = "dashboard.html";
-            } else {
-                window.location.href = "dashboard.html";
+                localStorage.removeItem('authToken');
+                window.location.href = "login.html";
             }
         }
     </script>

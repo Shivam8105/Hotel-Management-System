@@ -71,22 +71,22 @@
             <div class="stats-container">
                 <div class="stat-card">
                     <h3>Available Rooms</h3>
-                    <div class="stat-value">24</div>
+                    <div class="stat-value" id="available-rooms">0</div>
                     <div class="stat-label">Out of 30 Total Rooms</div>
                 </div>
                 <div class="stat-card">
                     <h3>Today's Check-ins</h3>
-                    <div class="stat-value">1</div>
-                    <div class="stat-label">Pending: 3</div>
+                    <div class="stat-value" id="todays-checkins">0</div>
+                    <div class="stat-label">Pending: <span id="pending-checkins">0</span></div>
                 </div>
                 <div class="stat-card">
                     <h3>Today's Check-outs</h3>
-                    <div class="stat-value">2</div>
-                    <div class="stat-label">Completed: 2</div>
+                    <div class="stat-value" id="todays-checkouts">0</div>
+                    <div class="stat-label">Completed: <span id="completed-checkouts">0</span></div>
                 </div>
                 <div class="stat-card">
                     <h3>New Bookings</h3>
-                    <div class="stat-value">3</div>
+                    <div class="stat-value" id="new-bookings">0</div>
                     <div class="stat-label">Last 24 hours</div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
             <div class="recent-bookings">
                 <div class="section-header">
                     <h3>Recent Bookings</h3>
-                    <button class="view-all-btn">View All</button>
+                    <a href="bookings.html" class="view-all-btn">View All</a>
                 </div>
                 <table class="bookings-table">
                     <thead>
@@ -107,23 +107,8 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Shivam Kumar</td>
-                            <td>201 - Deluxe</td>
-                            <td>Nov 2, 2024</td>
-                            <td>Nov 5, 2024</td>
-                            <td><span class="status-pending">Pending</span></td>
-                            <td><button class="action-btn">Check In</button></td>
-                        </tr>
-                        <tr>
-                            <td>Sumit Kumar</td>
-                            <td>305 - Suite</td>
-                            <td>Nov 2, 2024</td>
-                            <td>Nov 4, 2024</td>
-                            <td><span class="status-confirmed">Confirmed</span></td>
-                            <td><button class="action-btn">Check In</button></td>
-                        </tr>
+                    <tbody id="recent-bookings-body">
+                        <!-- Bookings will be dynamically populated here -->
                     </tbody>
                 </table>
             </div>
@@ -158,7 +143,98 @@
             </div>
         </div>
     </div>
-    <script src="js/api.js"></script>
-    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch bookings and room availability
+            fetch('php/get_bookings.php')
+                .then(response => response.json())
+                .then(data => {
+                    const bookings = data.bookings;
+                    const totalRooms = data.total_rooms;
+                    const bookedRooms = data.booked_rooms;
+                    const availableRooms = data.available_rooms;
+        
+                    const today = new Date();
+                    const todayString = today.toISOString().split('T')[0];
+        
+                    let todaysCheckins = 0;
+                    let todaysCheckouts = 0;
+                    let pendingCheckins = 0;
+                    let newBookings = 0;
+                    
+                    // Populate recent bookings table
+                    const recentBookingsBody = document.getElementById('recent-bookings-body');
+                    recentBookingsBody.innerHTML = ''; // Clear existing content
+        
+                    bookings.forEach(booking => {
+                        const checkInDate = new Date(booking.checkin_date);
+                        const checkOutDate = new Date(booking.checkout_date);
+                        const checkInDateString = checkInDate.toISOString().split('T')[0];
+                        const checkOutDateString = checkOutDate.toISOString().split('T')[0];
+        
+                        // Check-ins and check-outs for today
+                        if (checkInDateString === todayString) {
+                            todaysCheckins++;
+                            if (booking.booking_status === 'pending') {
+                                pendingCheckins++;
+                            }
+                        }
+        
+                        if (checkOutDateString === todayString) {
+                            todaysCheckouts++;
+                        }
+        
+                        // New bookings (created in last 24 hours)
+                        const bookingDate = new Date(booking.booking_date);
+                        const hoursDiff = (today - bookingDate) / (1000 * 60 * 60);
+                        if (hoursDiff <= 24) {
+                            newBookings++;
+                        }
+        
+                        // Create table row for recent bookings
+                        const row = `
+                            <tr>
+                                <td>${booking.name || 'N/A'}</td>
+                                <td>${booking.room_type || 'N/A'}</td>
+                                <td>${booking.checkin_date}</td>
+                                <td>${booking.checkout_date}</td>
+                                <td><span class="status-${(booking.booking_status || 'unknown').toLowerCase()}">${booking.booking_status || 'Unknown'}</span></td>
+                                <td><button class="action-btn" data-booking-id="${booking.id}">Check In</button></td>
+                            </tr>
+                        `;
+                        recentBookingsBody.innerHTML += row;
+                    });
+        
+                    // Update dashboard elements
+                    document.getElementById('available-rooms').textContent = availableRooms;
+                    document.getElementById('todays-checkins').textContent = todaysCheckins;
+                    document.getElementById('pending-checkins').textContent = pendingCheckins;
+                    document.getElementById('todays-checkouts').textContent = todaysCheckouts;
+                    document.getElementById('completed-checkouts').textContent = todaysCheckouts;
+                    document.getElementById('new-bookings').textContent = newBookings;
+        
+                    // Add event listeners to check-in buttons
+                    const actionButtons = document.querySelectorAll('.action-btn');
+                    actionButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const row = this.closest('tr');
+                            const guestName = row.querySelector('td:first-child').textContent;
+                            const roomType = row.querySelector('td:nth-child(2)').textContent;
+                            const checkInDate = row.querySelector('td:nth-child(3)').textContent;
+                            const checkOutDate = row.querySelector('td:nth-child(4)').textContent;
+                            const bookingId = this.getAttribute('data-booking-id');
+        
+                            // Redirect to registration with pre-filled details
+                            window.location.href = `registration.html?name=${encodeURIComponent(guestName)}&room_type=${encodeURIComponent(roomType)}&checkin_date=${encodeURIComponent(checkInDate)}&checkout_date=${encodeURIComponent(checkOutDate)}&booking_id=${encodeURIComponent(bookingId)}`;
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching bookings:', error);
+                    // Fallback or error handling
+                    document.getElementById('recent-bookings-body').innerHTML = '<tr><td colspan="6">Error loading bookings</td></tr>';
+                });
+        });
+        </script>
 </body>
 </html>
