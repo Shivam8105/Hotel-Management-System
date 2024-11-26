@@ -63,7 +63,7 @@
         </nav>
       </div>
 
-      <div class="main-content">
+      <!-- <div class="main-content">
         <header>
           <h1>Check-Out</h1>
         </header>
@@ -93,7 +93,7 @@
               <input type="date" id="checkOutDate" required />
               <button type="submit">Complete Check-Out</button>
             </form>
-          </section>
+          </section> -->
           <section class="booking-summary">
             <h2>Your Booking Summary</h2>
             <table id="bookingTable">
@@ -113,6 +113,25 @@
         </div>
       </div>
     </div>
-    <script src="js/script.js"></script>
+    <script>
+      fetch('php/get_active_bookings.php')
+.then(response => response.json())
+.then(data => {
+    const bookingSummaryBody = document.getElementById('bookingSummaryBody');
+    data.forEach(booking => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${booking.room_type}</td>
+            <td>${booking.checkin_date}</td>
+            <td>${booking.checkout_date}</td>
+            <td>$${booking.room_price}</td>
+            <td><button class="delete-btn" data-id="${booking.id}">Delete</button></td>
+            <td><button class="complete-btn" data-id="${booking.id}">Complete</button></td>
+        `;
+        bookingSummaryBody.appendChild(row);
+    });
+})
+.catch(error => console.error('Error fetching active bookings:', error));
+    </script>
   </body>
 </html>

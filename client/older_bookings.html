@@ -23,7 +23,18 @@
             <ul id="olderBookingList"></ul>
         </section>
     </main>
-    <script src="js/script.js"></script>
-    <script src="js/api.js"></script>
+    <script>
+        fetch('php/get_completed_bookings.php')
+.then(response => response.json())
+.then(data => {
+    const bookingList = document.getElementById('bookingList');
+    data.forEach(booking => {
+        const li = document.createElement('li');
+        li.textContent = `Room Type: ${booking.room_type}, Check-In: ${booking.checkin_date}, Check-Out: ${booking.checkout_date}`;
+        bookingList.appendChild(li);
+    });
+})
+.catch(error => console.error('Error fetching completed bookings:', error));
+    </script>
 </body>
 </html>

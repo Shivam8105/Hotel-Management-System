@@ -12,8 +12,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Retrieve active bookings from the 'bookings' table
-$sql = "SELECT * FROM bookings WHERE booking_status = 'active'";
+// Retrieve completed bookings from the 'bookings' table
+$sql = "SELECT * FROM bookings WHERE booking_status = 'completed'";
 $result = $conn->query($sql);
 
 $bookings = array();

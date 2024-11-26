@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/checkin.css">
+    <title>Radisson Blu - Check-in</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Check-in</h1>
+        <form id="checkin-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="room-type">Room Type:</label>
+            <input type="text" id="room-type" name="room-type" readonly>
+            <label for="room-price">Room Price:</label>
+            <input type="text" id="room-price" name="room-price" readonly>
+            <label for="checkin-date">Check-in Date:</label>
+            <input type="date" id="checkin-date" name="checkin-date" required>
+            <label for="checkout-date">Check-out Date:</label>
+            <input type="date" id="checkout-date" name="checkout-date" required>
+            <button type="submit">Check-in</button>
+        </form>
+        <div id="confirmation-message" class="hidden">
+            <h2>Booking Confirmed</h2>
+            <p>Your booking has been confirmed. You will be redirected to the Bookings page.</p>
+        </div>
+    </div>
+    <script src="js/checkin.js"></script>
+</body>
+</html>
