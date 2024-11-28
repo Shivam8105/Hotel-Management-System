@@ -13,7 +13,6 @@ body {
     color: #d0d0d0;
 }
 
-/* Sidebar Styles */
 .sidebar {
     width: 280px;
     background: linear-gradient(145deg, #1c1c1c, #141414);
@@ -81,7 +80,6 @@ body {
     margin-top: auto;
 }
 
-/* Main Content Styles */
 .main-content {
     flex: 1;
     margin-left: 280px;
@@ -134,7 +132,6 @@ body {
     color: #d0d0d0;
 }
 
-/* Stats Container Styles */
 .stats-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -172,7 +169,6 @@ body {
     color: #8c8c8c;
 }
 
-/* Recent Bookings Styles */
 .recent-bookings {
     background: linear-gradient(145deg, #242424, #1a1a1a);
     padding: 1.5rem;

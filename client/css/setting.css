@@ -1,4 +1,3 @@
-/* Main Content Styles */
 .main-content {
     margin-left: 250px;
     padding: 2rem;
@@ -17,7 +16,6 @@
     font-size: 1.8rem;
 }
 
-/* Settings Section Styles */
 .settings-section {
     margin-bottom: 2rem;
 }
@@ -35,7 +33,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Setting Item Styles */
 .setting-item {
     margin-bottom: 1.2rem;
 }
@@ -68,7 +65,6 @@
     border-color: #bb86fc;
 }
 
-/* Checkbox Styles */
 .setting-item.checkbox {
     display: flex;
     align-items: center;
@@ -85,7 +81,6 @@
     cursor: pointer;
 }
 
-/* Button Styles */
 .button-group {
     margin-top: 2rem;
     display: flex;
@@ -120,7 +115,6 @@
     background-color: #c8c8c8;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .main-content {
         margin-left: 0;

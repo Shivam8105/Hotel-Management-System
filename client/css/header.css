@@ -1,6 +1,3 @@
-/* header.css */
-
-/* General Header Styles */
 header {
     background: linear-gradient(135deg, #0073e6, #005bb5);
     color: white;
@@ -10,7 +7,6 @@ header {
     position: relative;
 }
 
-/* Header Title */
 header h1 {
     font-size: 2.8em;
     margin: 0;
@@ -18,12 +14,10 @@ header h1 {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Navigation Styles */
 nav {
     margin-top: 15px;
 }
 
-/* Navigation Links */
 nav a {
     color: white;
     text-decoration: none;
@@ -34,14 +28,12 @@ nav a {
     transition: background-color 0.3s, color 0.3s, transform 0.2s;
 }
 
-/* Navigation Links Hover Effects */
 nav a:hover {
     background-color: rgba(255, 255, 255, 0.2);
-    color: #ffcc00; /* Gold color on hover */
+    color: #ffcc00; 
     transform: scale(1.05);
 }
 
-/* Responsive Styles */
 @media (max-width: 600px) {
     header h1 {
         font-size: 2em;

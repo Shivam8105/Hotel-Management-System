@@ -1,14 +1,10 @@
 <?php
 header('Content-Type: application/json');
-
-// Database connection
 $host = 'localhost';
 $dbUser = 'root'; 
 $dbPassword = ''; 
 $dbName = 'database';
 $conn = new mysqli($host, $dbUser, $dbPassword, $dbName);
-
-// Check connection
 if ($conn->connect_error) {
     die(json_encode([
         'success' => false,
@@ -17,21 +13,16 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get form data
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-
-    // Check if passwords match
     if ($password != $confirm_password) {
         die(json_encode([
             'success' => false,
             'message' => 'Passwords do not match!'
         ]));
     }
-
-    // Check if email already exists
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -45,8 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ]));
     }
     $stmt->close();
-
-    // Hash password and insert user
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $name, $email, $hashedPassword);
