@@ -1,223 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hotel Management Dashboard</title>
-    <link rel="stylesheet" href="css/dashboard.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body>
     <div class="sidebar">
-        <div class="profile">
-            <div class="profile-image"></div>
-            <div class="profile-info">
-                <h2>Radisson Blu</h2>
-                <p>Dashboard</p>
-            </div>
+      <div class="profile">
+        <div class="profile-image">
+          <img id="img-id" src="./assets/img1.jpg" />
         </div>
-        
-        <nav class="nav-menu">
-            <div class="nav-item active">
-                <a href="dashboard.html">
-                    <i class="icon">🏠</i>
-                    <span>Dashboard</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="rooms.html">
-                    <i class="icon">🛏️</i>
-                    <span>Rooms</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="bookings.html">
-                    <i class="icon">📝</i>
-                    <span>Bookings</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="checkout.html">
-                    <i class="icon">✅</i>
-                    <span>Payments</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="older_bookings.html">
-                    <i class="icon">📚</i>
-                    <span>Older Bookings</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="registration.html">
-                    <i class="icon">👥</i>
-                    <span>Registration</span>
-                </a>
-            </div>
-            <div class="nav-item logout">
-                <a href="logout.html">
-                    <i class="icon">🚪</i>
-                    <span>Log Out</span>
-                </a>
-            </div>
-        </nav>
+        <div class="profile-info">
+          <h2>Radisson Blu</h2>
+          <p>Dashboard</p>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <div class="nav-item active">
+          <a href="dashboard.html">
+            <i class="icon">🏠</i>
+            <span>Dashboard</span>
+          </a>
+        </div>
+        <div class="nav-item">
+          <a href="rooms.html">
+            <i class="icon">🛏️</i>
+            <span>Rooms</span>
+          </a>
+        </div>
+        <div class="nav-item">
+          <a href="bookings.html">
+            <i class="icon">📝</i>
+            <span>Bookings</span>
+          </a>
+        </div>
+        <div class="nav-item">
+          <a href="checkout.html">
+            <i class="icon">✅</i>
+            <span>Payments</span>
+          </a>
+        </div>
+        <div class="nav-item">
+          <a href="older_bookings.html">
+            <i class="icon">📚</i>
+            <span>Older Bookings</span>
+          </a>
+        </div>
+        <div class="nav-item">
+          <a href="registration.html">
+            <i class="icon">👥</i>
+            <span>Registration</span>
+          </a>
+        </div>
+        <div class="nav-item logout">
+          <a href="logout.html">
+            <i class="icon">🚪</i>
+            <span>Log Out</span>
+          </a>
+        </div>
+      </nav>
     </div>
 
     <div class="main-content">
-        <div class="header-container">
-            <h1>Hotel Dashboard</h1>
+      <div class="header-container">
+        <h1>Hotel Dashboard</h1>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="stats-container">
+          <div class="stat-card">
+            <h3>Available Rooms</h3>
+            <div class="stat-value" id="available-rooms">0</div>
+            <div class="stat-label">Out of 30 Total Rooms</div>
+          </div>
+          <div class="stat-card">
+            <h3>Today's Check-ins</h3>
+            <div class="stat-value" id="todays-checkins">0</div>
+            <div class="stat-label">
+              Pending: <span id="pending-checkins">0</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3>Today's Check-outs</h3>
+            <div class="stat-value" id="todays-checkouts">0</div>
+            <div class="stat-label">
+              Completed: <span id="completed-checkouts">0</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3>New Bookings</h3>
+            <div class="stat-value" id="new-bookings">0</div>
+            <div class="stat-label">Last 24 hours</div>
+          </div>
         </div>
 
-        <div class="dashboard-grid">
-            <div class="stats-container">
-                <div class="stat-card">
-                    <h3>Available Rooms</h3>
-                    <div class="stat-value" id="available-rooms">0</div>
-                    <div class="stat-label">Out of 30 Total Rooms</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Today's Check-ins</h3>
-                    <div class="stat-value" id="todays-checkins">0</div>
-                    <div class="stat-label">Pending: <span id="pending-checkins">0</span></div>
-                </div>
-                <div class="stat-card">
-                    <h3>Today's Check-outs</h3>
-                    <div class="stat-value" id="todays-checkouts">0</div>
-                    <div class="stat-label">Completed: <span id="completed-checkouts">0</span></div>
-                </div>
-                <div class="stat-card">
-                    <h3>New Bookings</h3>
-                    <div class="stat-value" id="new-bookings">0</div>
-                    <div class="stat-label">Last 24 hours</div>
-                </div>
-            </div>
-
-            <div class="recent-bookings">
-                <div class="section-header">
-                    <h3>Recent Bookings</h3>
-                    <a href="bookings.html" class="view-all-btn">View All</a>
-                </div>
-                <table class="bookings-table">
-                    <thead>
-                        <tr>
-                            <th>Guest Name</th>
-                            <th>Room</th>
-                            <th>Check In</th>
-                            <th>Check Out</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="recent-bookings-body">
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="room-status">
-                <div class="section-header">
-                    <h3>Room Status</h3>
-                    <button class="view-all-btn">Manage Rooms</button>
-                </div>
-                <div class="room-grid">
-                    <div class="room-card available">
-                        <h4>201</h4>
-                        <p>Deluxe Room</p>
-                        <span class="status">Available</span>
-                    </div>
-                    <div class="room-card occupied">
-                        <h4>202</h4>
-                        <p>Deluxe Room</p>
-                        <span class="status">Occupied</span>
-                    </div>
-                    <div class="room-card cleaning">
-                        <h4>203</h4>
-                        <p>Suite</p>
-                        <span class="status">Cleaning</span>
-                    </div>
-                    <div class="room-card maintenance">
-                        <h4>204</h4>
-                        <p>Standard Room</p>
-                        <span class="status">Maintenance</span>
-                    </div>
-                </div>
-            </div>
+        <div class="recent-bookings">
+          <div class="section-header">
+            <h3>Recent Bookings</h3>
+            <a href="bookings.html" class="view-all-btn">View All</a>
+          </div>
+          <table class="bookings-table">
+            <thead>
+              <tr>
+                <th>Guest Name</th>
+                <th>Room</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="recent-bookings-body"></tbody>
+          </table>
         </div>
+
+        <div class="room-status">
+          <div class="section-header">
+            <h3>Room Status</h3>
+            <button class="view-all-btn">Manage Rooms</button>
+          </div>
+          <div class="room-grid">
+            <div class="room-card available">
+              <h4>201</h4>
+              <p>Deluxe Room</p>
+              <span class="status">Available</span>
+            </div>
+            <div class="room-card occupied">
+              <h4>202</h4>
+              <p>Deluxe Room</p>
+              <span class="status">Occupied</span>
+            </div>
+            <div class="room-card cleaning">
+              <h4>203</h4>
+              <p>Suite</p>
+              <span class="status">Cleaning</span>
+            </div>
+            <div class="room-card maintenance">
+              <h4>204</h4>
+              <p>Standard Room</p>
+              <span class="status">Maintenance</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    fetch('php/get_bookings.php')
-        .then(response => response.json())
-        .then(data => {
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("php/get_bookings.php")
+          .then((response) => response.json())
+          .then((data) => {
             const totalRooms = 30;
-            const bookings = data; 
+            const bookings = data;
             const today = new Date();
-            const todayString = today.toISOString().split('T')[0];
+            const todayString = today.toISOString().split("T")[0];
 
             let todaysCheckins = 0;
             let todaysCheckouts = 0;
             let pendingCheckins = 0;
             let newBookings = 0;
             let bookedRooms = 0;
-            const recentBookingsBody = document.getElementById('recent-bookings-body');
-            recentBookingsBody.innerHTML = ''; 
+            const recentBookingsBody = document.getElementById(
+              "recent-bookings-body"
+            );
+            recentBookingsBody.innerHTML = "";
 
-            bookings.forEach(booking => {
-                const checkInDate = new Date(booking.checkin_date);
-                const checkOutDate = new Date(booking.checkout_date);
-                const checkInDateString = checkInDate.toISOString().split('T')[0];
-                const checkOutDateString = checkOutDate.toISOString().split('T')[0];
-                bookedRooms++;
-                if (checkInDateString === todayString) {
-                    todaysCheckins++;
-                    if (booking.booking_status === 'pending') {
-                        pendingCheckins++;
-                    }
+            bookings.forEach((booking) => {
+              const checkInDate = new Date(booking.checkin_date);
+              const checkOutDate = new Date(booking.checkout_date);
+              const checkInDateString = checkInDate.toISOString().split("T")[0];
+              const checkOutDateString = checkOutDate
+                .toISOString()
+                .split("T")[0];
+              bookedRooms++;
+              if (checkInDateString === todayString) {
+                todaysCheckins++;
+                if (booking.booking_status === "pending") {
+                  pendingCheckins++;
                 }
+              }
 
-                if (checkOutDateString === todayString) {
-                    todaysCheckouts++;
-                }
-                const bookingDate = new Date(booking.booking_date);
-                const hoursDiff = (today - bookingDate) / (1000 * 60 * 60);
-                if (hoursDiff <= 24) {
-                    newBookings++;
-                }
-                const row = `
+              if (checkOutDateString === todayString) {
+                todaysCheckouts++;
+              }
+              const bookingDate = new Date(booking.booking_date);
+              const hoursDiff = (today - bookingDate) / (1000 * 60 * 60);
+              if (hoursDiff <= 24) {
+                newBookings++;
+              }
+              const row = `
                     <tr>
-                        <td>${booking.name || 'N/A'}</td>
-                        <td>${booking.room_type || 'N/A'}</td>
+                        <td>${booking.name || "N/A"}</td>
+                        <td>${booking.room_type || "N/A"}</td>
                         <td>${booking.checkin_date}</td>
                         <td>${booking.checkout_date}</td>
-                        <td><span class="status-${(booking.booking_status || 'unknown').toLowerCase()}">${booking.booking_status || 'Unknown'}</span></td>
-                        <td><button class="action-btn" data-booking-id="${booking.id}">Check Out</button></td>
+                        <td><span class="status-${(
+                          booking.booking_status || "unknown"
+                        ).toLowerCase()}">${
+                booking.booking_status || "Unknown"
+              }</span></td>
+                        <td><button class="action-btn" data-booking-id="${
+                          booking.id
+                        }">Check Out</button></td>
                     </tr>
                 `;
-                recentBookingsBody.innerHTML += row;
+              recentBookingsBody.innerHTML += row;
             });
             const availableRooms = totalRooms - bookedRooms;
-            document.getElementById('available-rooms').textContent = availableRooms;
-            document.getElementById('todays-checkins').textContent = todaysCheckins;
-            document.getElementById('pending-checkins').textContent = pendingCheckins;
-            document.getElementById('todays-checkouts').textContent = todaysCheckouts;
-            document.getElementById('completed-checkouts').textContent = todaysCheckouts;
-            document.getElementById('new-bookings').textContent = newBookings;
-            const actionButtons = document.querySelectorAll('.action-btn');
-            actionButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    const guestName = row.querySelector('td:first-child').textContent;
-                    const roomType = row.querySelector('td:nth-child(2)').textContent;
-                    const checkInDate = row.querySelector('td:nth-child(3)').textContent;
-                    const checkOutDate = row.querySelector('td:nth-child(4)').textContent;
-                    const bookingId = this.getAttribute('data-booking-id');
-                    window.location.href = `registration.html?name=${encodeURIComponent(guestName)}&room_type=${encodeURIComponent(roomType)}&checkin_date=${encodeURIComponent(checkInDate)}&checkout_date=${encodeURIComponent(checkOutDate)}&booking_id=${encodeURIComponent(bookingId)}`;
-                });
+            document.getElementById("available-rooms").textContent =
+              availableRooms;
+            document.getElementById("todays-checkins").textContent =
+              todaysCheckins;
+            document.getElementById("pending-checkins").textContent =
+              pendingCheckins;
+            document.getElementById("todays-checkouts").textContent =
+              todaysCheckouts;
+            document.getElementById("completed-checkouts").textContent =
+              todaysCheckouts;
+            document.getElementById("new-bookings").textContent = newBookings;
+            const actionButtons = document.querySelectorAll(".action-btn");
+            actionButtons.forEach((button) => {
+              button.addEventListener("click", function () {
+                const row = this.closest("tr");
+                const guestName =
+                  row.querySelector("td:first-child").textContent;
+                const roomType =
+                  row.querySelector("td:nth-child(2)").textContent;
+                const checkInDate =
+                  row.querySelector("td:nth-child(3)").textContent;
+                const checkOutDate =
+                  row.querySelector("td:nth-child(4)").textContent;
+                const bookingId = this.getAttribute("data-booking-id");
+                window.location.href = `registration.html?name=${encodeURIComponent(
+                  guestName
+                )}&room_type=${encodeURIComponent(
+                  roomType
+                )}&checkin_date=${encodeURIComponent(
+                  checkInDate
+                )}&checkout_date=${encodeURIComponent(
+                  checkOutDate
+                )}&booking_id=${encodeURIComponent(bookingId)}`;
+              });
             });
-        })
-        .catch(error => {
-            console.error('Error fetching bookings:', error);
-            document.getElementById('recent-bookings-body').innerHTML = '<tr><td colspan="6">Error loading bookings</td></tr>';
-        });
-});
-        </script>
-</body>
+          })
+          .catch((error) => {
+            console.error("Error fetching bookings:", error);
+            document.getElementById("recent-bookings-body").innerHTML =
+              '<tr><td colspan="6">Error loading bookings</td></tr>';
+          });
+      });
+    </script>
+  </body>
 </html>

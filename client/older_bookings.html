@@ -30,7 +30,7 @@
     const bookingList = document.getElementById('bookingList');
     data.forEach(booking => {
         const li = document.createElement('li');
-        li.textContent = `Room Type: ${booking.room_type}, Check-In: ${booking.checkin_date}, Check-Out: ${booking.checkout_date}`;
+        li.textContent = `name: ${booking.name}, email: ${booking.email},Room Type: ${booking.room_type}, Check-In: ${booking.checkin_date}, Check-Out: ${booking.checkout_date}`;
         bookingList.appendChild(li);
     });
 })

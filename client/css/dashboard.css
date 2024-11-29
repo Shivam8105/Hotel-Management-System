@@ -36,7 +36,13 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#img-id{
+    position: relative;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(128, 128, 128, 0.614);
 }
 
 .profile-info h2 {
