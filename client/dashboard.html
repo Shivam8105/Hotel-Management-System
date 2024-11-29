@@ -158,7 +158,7 @@
             let newBookings = 0;
             let bookedRooms = 0;
             const recentBookingsBody = document.getElementById('recent-bookings-body');
-            recentBookingsBody.innerHTML = ''; // Clear existing content
+            recentBookingsBody.innerHTML = ''; 
 
             bookings.forEach(booking => {
                 const checkInDate = new Date(booking.checkin_date);
@@ -188,7 +188,7 @@
                         <td>${booking.checkin_date}</td>
                         <td>${booking.checkout_date}</td>
                         <td><span class="status-${(booking.booking_status || 'unknown').toLowerCase()}">${booking.booking_status || 'Unknown'}</span></td>
-                        <td><button class="action-btn" data-booking-id="${booking.id}">Check In</button></td>
+                        <td><button class="action-btn" data-booking-id="${booking.id}">Check Out</button></td>
                     </tr>
                 `;
                 recentBookingsBody.innerHTML += row;
@@ -215,7 +215,6 @@
         })
         .catch(error => {
             console.error('Error fetching bookings:', error);
-            // Fallback or error handling
             document.getElementById('recent-bookings-body').innerHTML = '<tr><td colspan="6">Error loading bookings</td></tr>';
         });
 });
