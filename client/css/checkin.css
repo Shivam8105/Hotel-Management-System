@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #121212;
     margin: 0;
     padding: 0;
 }
@@ -9,12 +9,14 @@ body {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5rem;
 }
 
 h1, h2 {
     text-align: center;
+    color: #888;
 }
 
 form {
@@ -25,22 +27,39 @@ form {
 label {
     font-weight: bold;
     margin-top: 10px;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
 input {
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 2rem;
+    font-size: 17px;
+    background-color: rgba(255, 255, 255, 0.348);
+
+}
+
+input::-webkit-input-placeholder{
+    font-size: 12px;
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #bb86fc;
     color: white;
     padding: 10px 20px;
+    width: 5rem;
+    padding: 15px 10px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 500px;
     border: none;
-    border-radius: 4px;
+    border-radius: 2rem;
     cursor: pointer;
     margin-top: 20px;
+    font-size: 15px;
 }
 
 .hidden {
