@@ -36,9 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ]));
     }
     $stmt->close();
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
     $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $name, $email, $hashedPassword);
+    $stmt->bind_param("sss", $name, $email, $password);
 
     if ($stmt->execute()) {
         die(json_encode([

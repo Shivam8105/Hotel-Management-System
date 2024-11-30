@@ -33,8 +33,8 @@ body {
 }
 
 .profile-image {
-    width: 45px;
-    height: 45px;
+    /* width: 45px;
+    height: 45px; */
     border-radius: 50%;
 }
 
@@ -42,7 +42,6 @@ body {
     position: relative;
     height: 50px;
     border-radius: 50%;
-    background-color: rgba(128, 128, 128, 0.614);
 }
 
 .profile-info h2 {

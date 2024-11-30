@@ -22,9 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($hashedPassword);
+        $stmt->bind_result($storedPassword);
         $stmt->fetch();
-        if (password_verify($password, $hashedPassword)) {
+        if ($password === $storedPassword) {
             echo json_encode([
                 'success' => true,
                 'message' => 'Login successful!'
