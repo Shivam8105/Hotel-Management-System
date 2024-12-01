@@ -33,11 +33,18 @@ body {
 }
 
 .profile-image {
-    width: 45px;
-    height: 45px;
+    /* width: 45px;
+    height: 45px; */
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.2);
 }
+
+#img-id{
+    position: relative;
+    height: 50px;
+    border-radius: 50%;
+}
+
 
 .profile-info h2 {
     font-size: 1.1rem;
@@ -79,6 +86,16 @@ body {
 .logout {
     margin-top: auto;
 }
+
+.logout a {
+    color: #FF6B6B;
+  }
+
+  .logout:hover{
+    background-color: #ff6b6b47;
+    color: white;
+  }
+
 
 main {
     flex: 1;

@@ -85,6 +85,16 @@ body {
     margin-top: auto;
 }
 
+.logout a {
+    color: #FF6B6B;
+  }
+
+  .logout:hover{
+    background-color: #ff6b6b47;
+    color: white;
+  }
+
+
 .main-content {
     flex: 1;
     margin-left: 280px;
