@@ -76,7 +76,7 @@ body {
     color: #b0a7ff;
     background-color: rgba(176, 167, 255, 0.08);
     border-radius: 10px;
-    padding: 0.75rem 1rem;
+    padding: 0.55rem 1rem;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 

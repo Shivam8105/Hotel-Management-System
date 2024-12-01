@@ -90,6 +90,8 @@
     data.forEach(booking => {
         const row = document.createElement('tr');
         row.innerHTML = `
+            <td>${booking.name}</td>
+            <td>${booking.email}</td>
             <td>${booking.room_type}</td>
             <td>${booking.checkin_date}</td>
             <td>${booking.checkout_date}</td>
