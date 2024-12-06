@@ -10,14 +10,14 @@
         width: 100%;
         border-collapse: collapse;
       }
-      .booking-summary th, 
+      .booking-summary th,
       .booking-summary td {
         border: 1px solid #ddd;
         padding: 12px;
         text-align: left;
       }
       .complete-btn {
-        background-color: #4CAF50;
+        background-color: #4caf50;
         color: white;
         border: none;
         padding: 8px 16px;
@@ -118,8 +118,7 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody id="bookingSummaryBody">
-            </tbody>
+            <tbody id="bookingSummaryBody"></tbody>
           </table>
           <div id="messageContainer"></div>
         </section>
@@ -128,117 +127,131 @@
 
     <script>
       // Fetch the booking data from the API
-      fetch('http://localhost:8107/booking')
-        .then(response => response.json())
-        .then(data => {
-          const bookingSummaryBody = document.getElementById('bookingSummaryBody');
-          
-          if (data.length === 0) {
-            const row = document.createElement('tr');
+      // Fetch the booking data from the API
+      fetch("http://localhost:8107/booking")
+        .then((response) => response.json())
+        .then((data) => {
+          const bookingSummaryBody =
+            document.getElementById("bookingSummaryBody");
+
+          // Filter the data to only show bookings where isPaid is false
+          const unpaidBookings = data.filter(
+            (booking) => booking.isPaid === false
+          );
+
+          if (unpaidBookings.length === 0) {
+            const row = document.createElement("tr");
             row.innerHTML = `
-              <td colspan="7" style="text-align: center;">No active bookings found.</td>
-            `;
+        <td colspan="7" style="text-align: center;">No unpaid bookings found.</td>
+      `;
             bookingSummaryBody.appendChild(row);
           } else {
-            data.forEach(booking => {
-              const row = document.createElement('tr');
+            unpaidBookings.forEach((booking) => {
+              const row = document.createElement("tr");
               row.innerHTML = `
-                <td>${booking.name}</td>
-                <td>${booking.email}</td>
-                <td>${booking.room_type}</td>
-                <td>${booking.checkin_date}</td>
-                <td>${booking.checkout_date}</td>
-                <td>${booking.room_price}</td>
-                <td>
-                  <button class="delete-btn" onclick="deleteBooking('${booking.email}')">Delete</button>
-                  <button class="complete-btn" onclick="completeBooking('${booking.email}')">Complete</button>
-                </td>
-              `;
+          <td>${booking.name}</td>
+          <td>${booking.email}</td>
+          <td>${booking.room_type}</td>
+          <td>${new Date(booking.checkin_date).toLocaleDateString()}</td>
+          <td>${new Date(booking.checkout_date).toLocaleDateString()}</td>
+          <td>${booking.room_price}</td>
+          <td>
+            <button class="delete-btn" onclick="deleteBooking('${
+              booking._id
+            }')">Delete</button>
+            <button class="complete-btn" onclick="completeBooking('${
+              booking._id
+            }')">Complete</button>
+          </td>
+        `;
               bookingSummaryBody.appendChild(row);
             });
           }
         })
-        .catch(error => console.error('Error fetching active bookings:', error));
+        .catch((error) =>
+          console.error("Error fetching active bookings:", error)
+        );
 
       // Function to complete a booking
-      function completeBooking(bookingEmail) {
-        const messageContainer = document.getElementById('messageContainer');
-        
-        fetch('http://localhost:8107/completeBooking', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email: bookingEmail })
-        })
-        .then(response => response.json())
-        .then(result => {
-          if (result.status === 'success') {
-            messageContainer.innerHTML = `
-              <div class="success">
-                ${result.message}. Redirecting to Older Bookings...
-              </div>
-            `;
-            setTimeout(() => {
-              window.location.href = 'older_bookings.html';
-            }, 2000);
-          } else {
-            messageContainer.innerHTML = `
-              <div class="error">
-                ${result.message}
-              </div>
-            `;
-          }
-        })
-        .catch(error => {
-          messageContainer.innerHTML = `
-            <div class="error">
-              Error: ${error.message}
-            </div>
-          `;
-        });
-      }
+      // Function to complete a booking
+      function completeBooking(bookingId) {
+        const messageContainer = document.getElementById("messageContainer");
 
-      // Function to delete a booking
-      function deleteBooking(bookingEmail) {
-        const messageContainer = document.getElementById('messageContainer');
-        
-        if (!confirm('Are you sure you want to delete this booking?')) {
+        fetch("http://localhost:8107/completeBooking", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ bookingId: bookingId }),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            if (result.status === "success") {
+              messageContainer.innerHTML = `
+        <div class="success">
+          ${result.message} Redirecting to Older Bookings...
+        </div>
+      `;
+              setTimeout(() => {
+                window.location.href = "older_bookings.html";
+              }, 2000);
+            } else {
+              messageContainer.innerHTML = `
+        <div class="error">
+          ${result.message}
+        </div>
+      `;
+            }
+          })
+          .catch((error) => {
+            messageContainer.innerHTML = `
+      <div class="error">
+        Error: ${error.message}
+      </div>
+    `;
+          });
+      }
+      function deleteBooking(bookingId) {
+        const messageContainer = document.getElementById("messageContainer");
+
+        if (!confirm("Are you sure you want to delete this booking?")) {
           return;
         }
 
-        fetch('http://localhost:8107/deleteBooking', {
-          method: 'POST',
+        // Log the bookingId to verify
+        console.log("Deleting booking with ID:", bookingId);
+
+        fetch(`http://localhost:8107/deleteBooking/${bookingId}`, {
+          method: "DELETE",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email: bookingEmail })
         })
-        .then(response => response.json())
-        .then(result => {
-          if (result.status === 'success') {
+          .then((response) => response.json())
+          .then((result) => {
+            if (result.status === "success") {
+              messageContainer.innerHTML = `
+        <div class="success">
+          ${result.message}
+        </div>
+      `;
+              // Refresh the page to update the booking list
+              location.reload();
+            } else {
+              messageContainer.innerHTML = `
+        <div class="error">
+          ${result.message}
+        </div>
+      `;
+            }
+          })
+          .catch((error) => {
             messageContainer.innerHTML = `
-              <div class="success">
-                ${result.message}.
-              </div>
-            `;
-            // Refresh the page to update the booking list
-            location.reload();
-          } else {
-            messageContainer.innerHTML = `
-              <div class="error">
-                ${result.message}
-              </div>
-            `;
-          }
-        })
-        .catch(error => {
-          messageContainer.innerHTML = `
-            <div class="error">
-              Error: ${error.message}
-            </div>
-          `;
-        });
+      <div class="error">
+        Error: ${error.message}
+      </div>
+    `;
+          });
       }
     </script>
   </body>

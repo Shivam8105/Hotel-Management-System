@@ -1,179 +1,119 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Login Form Handler
-  const loginForm = document.getElementById("loginForm");
-  if (loginForm) {
-    loginForm.addEventListener("submit", function (event) {
-      event.preventDefault();
+document
+  .getElementById("registrationForm")
+  .addEventListener("submit", async function (e) {
+    e.preventDefault(); // Prevent default form submission
 
-      // Get form elements
-      const emailInput = document.getElementById("loginEmail");
-      const passwordInput = document.getElementById("loginPassword");
+    // Get form values
+    const fullName = document.getElementById("regName").value;
+    const email = document.getElementById("regEmail").value;
+    const password = document.getElementById("regPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-      // Get form values
-      const email = emailInput.value.trim();
-      const password = passwordInput.value;
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
 
-      // Validate inputs
-      let isValid = true;
+    // Check for valid email format
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
 
-      // Email validation
-      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      if (!email || !emailPattern.test(email)) {
-        emailInput.setCustomValidity("Please enter a valid email address");
-        isValid = false;
-      } else {
-        emailInput.setCustomValidity("");
-      }
+    // Password complexity check (at least one uppercase, one lowercase, one number, one special char)
+    const passwordPattern =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordPattern.test(password)) {
+      alert(
+        "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+      );
+      return;
+    }
 
-      // Password validation
-      if (!password) {
-        passwordInput.setCustomValidity("Password is required");
-        isValid = false;
-      } else {
-        passwordInput.setCustomValidity("");
-      }
+    // Prepare the request body to match server expectations
+    const userData = {
+      fullName: fullName, // Changed from 'name' to 'fullName'
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword, // Added confirmPassword
+    };
 
-      // Trigger validation display
-      loginForm.reportValidity();
-
-      // If any validation fails, stop submission
-      if (!isValid) {
-        return;
-      }
-
-      // Prepare form data
-      const formData = new FormData();
-      formData.append("email", email);
-      formData.append("password", password);
-
-      // Send login request
-      fetch("php/login.php", {
+    // Send registration data to the API
+    try {
+      const response = await fetch("http://localhost:8107/register", {
         method: "POST",
-        body: formData,
-      })
-        .then((response) => {
-          console.log("Raw Response:", response);
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Login Response:", data);
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
 
-          if (data.success) {
-            // Redirect to dashboard
-            window.location.href = "dashboard.html";
-          } else {
-            alert(data.message || "Login failed. Please try again.");
-          }
-        })
-        .catch((error) => {
-          console.error("Login Error:", error);
-          alert("Login failed. " + error.message);
-        });
-    });
-  }
-  // Registration Form Handler
-  const registrationForm = document.getElementById("registrationForm");
-  if (registrationForm) {
-    registrationForm.addEventListener("submit", function (event) {
-      event.preventDefault();
+      const data = await response.json();
 
-      // Get form elements
-      const nameInput = document.getElementById("regName");
-      const emailInput = document.getElementById("regEmail");
-      const passwordInput = document.getElementById("regPassword");
-      const confirmPasswordInput = document.getElementById("confirmPassword");
-
-      // Get form values
-      const name = nameInput.value.trim();
-      const email = emailInput.value.trim();
-      const password = passwordInput.value;
-      const confirmPassword = confirmPasswordInput.value;
-
-      // Validate each input individually
-      let isValid = true;
-
-      // Name validation
-      if (
-        !name ||
-        name.length < 2 ||
-        name.length > 50 ||
-        !/^[a-zA-Z\s'-]+$/.test(name)
-      ) {
-        nameInput.setCustomValidity(
-          "Please enter a valid name (2-50 characters, letters only)"
-        );
-        isValid = false;
+      if (response.ok) {
+        alert("Registration successful!");
+        window.location.href = "client/login.html"; // Redirect to login page after successful registration
       } else {
-        nameInput.setCustomValidity("");
+        alert("Error: " + data.message || "Registration failed");
       }
+    } catch (error) {
+      alert("Error: " + error.message);
+    }
+  });
 
-      // Email validation
-      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      if (!email || !emailPattern.test(email)) {
-        emailInput.setCustomValidity("Please enter a valid email address");
-        isValid = false;
-      } else {
-        emailInput.setCustomValidity("");
-      }
+document
+  .getElementById("loginForm")
+  .addEventListener("submit", async function (e) {
+    e.preventDefault(); // Prevent default form submission
 
-      // Password validation
-      const passwordPattern =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-      if (!password || !passwordPattern.test(password)) {
-        passwordInput.setCustomValidity(
-          "Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character"
-        );
-        isValid = false;
-      } else {
-        passwordInput.setCustomValidity("");
-      }
+    // Get form values
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
 
-      // Confirm password validation
-      if (password !== confirmPassword) {
-        confirmPasswordInput.setCustomValidity("Passwords do not match");
-        isValid = false;
-      } else {
-        confirmPasswordInput.setCustomValidity("");
-      }
+    // Check if the email and password are not empty
+    if (!email || !password) {
+      alert("Both email and password are required!");
+      return;
+    }
 
-      // Trigger validation display
-      registrationForm.reportValidity();
+    // Validate email format
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
 
-      // If any validation fails, stop submission
-      if (!isValid) {
-        return;
-      }
+    // Prepare the login request body
+    const loginData = {
+      email: email,
+      password: password,
+    };
 
-      // Prepare form data
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("email", email);
-      formData.append("password", password);
-      formData.append("confirm_password", confirmPassword);
-
-      // Send registration request
-      fetch("php/register.php", {
+    // Send login data to the API
+    try {
+      const response = await fetch("http://localhost:8107/login", {
         method: "POST",
-        body: formData,
-      })
-        .then((response) => {
-          console.log("Raw Response:", response);
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Registration Response:", data);
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
 
-          if (data.success) {
-            alert(data.message || "Registration successful!");
-            window.location.href = "login.html";
-          } else {
-            alert(data.message || "Registration failed. Please try again.");
-          }
-        })
-        .catch((error) => {
-          console.error("Registration Error:", error);
-          alert("Registration failed. " + error.message);
-        });
-    });
-  }
-});
+      const data = await response.json();
+
+      if (response.ok) {
+        // Store the token in localStorage
+        localStorage.setItem("authToken", data.token);
+
+        alert("Login successful!");
+        // Redirect to the dashboard or home page
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Error: " + data.message || "Login failed");
+      }
+    } catch (error) {
+      alert("Error: " + error.message);
+    }
+  });

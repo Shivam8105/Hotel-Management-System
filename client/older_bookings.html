@@ -65,66 +65,113 @@
       </aside>
 
       <main class="older-bookings">
-        <h2>Your Older Bookings</h2>
+        <h2>Completed Paid Bookings</h2>
         <ul id="olderBookingList"></ul>
       </main>
     </div>
 
     <script>
-      fetch("php/get_completed_bookings.php")
+      // Fetch completed (paid) bookings from the backend
+      fetch("http://localhost:8107/booking")
         .then((response) => response.json())
         .then((data) => {
           const olderBookingList = document.getElementById("olderBookingList");
-          data.forEach((booking) => {
+
+          // Filter only paid bookings
+          const paidBookings = data.filter(
+            (booking) => booking.isPaid === true
+          );
+
+          if (paidBookings.length === 0) {
             const li = document.createElement("li");
             li.innerHTML = `
+              <div class="booking-details">
+                <p>No completed paid bookings found.</p>
+              </div>
+            `;
+            olderBookingList.appendChild(li);
+          } else {
+            paidBookings.forEach((booking) => {
+              const li = document.createElement("li");
+              li.innerHTML = `
                 <div class="booking-details">
                     <p><strong>Name:</strong> ${booking.name}</p>
                     <p><strong>Email:</strong> ${booking.email}</p>
                     <p><strong>Room Type:</strong> ${booking.room_type}</p>
                     <p><strong>Check-In:</strong> ${booking.checkin_date}</p>
                     <p><strong>Check-Out:</strong> ${booking.checkout_date}</p>
+                    <p><strong>Room Price:</strong> ${booking.room_price}</p>
+                    <p><strong>Payment Status:</strong> <span class="paid-status">Paid</span></p>
                 </div>
-                <div class="booking-action">
-                    <button class="view-details-btn delete-btn" data-id="${booking.id}">Delete</button>
-                </div>
-            `;
-            olderBookingList.appendChild(li);
-          });
-
-          // Add event listener for delete buttons
-          document.querySelectorAll(".delete-btn").forEach((button) => {
-            button.addEventListener("click", function () {
-              const bookingId = this.dataset.id;
-
-              // Confirm deletion
-              if (confirm("Are you sure you want to delete this booking?")) {
-                fetch("php/delete_booking.php", {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                  },
-                  body: `id=${bookingId}&_method=DELETE`,
-                })
-                  .then((response) => {
-                    if (response.ok) {
-                      // Remove the booking element from the list
-                      this.closest("li").remove();
-                      alert("Booking deleted successfully!");
-                    } else {
-                      alert("Failed to delete booking. Please try again.");
-                    }
-                  })
-                  .catch((error) =>
-                    console.error("Error deleting booking:", error)
-                  );
-              }
+              `;
+              olderBookingList.appendChild(li);
             });
-          });
+
+            // Add event listener for delete buttons
+            document.querySelectorAll(".delete-btn").forEach((button) => {
+              button.addEventListener("click", function () {
+                const bookingId = this.dataset.id;
+
+                // Confirm deletion
+                if (confirm("Are you sure you want to delete this booking?")) {
+                  fetch(`http://localhost:8107/deleteBooking/${bookingId}`, {
+                    method: "DELETE",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  })
+                    .then((response) => response.json())
+                    .then((result) => {
+                      if (result.status === "success") {
+                        // Remove the booking element from the list
+                        this.closest("li").remove();
+                        alert("Booking deleted successfully!");
+                      } else {
+                        alert("Failed to delete booking. Please try again.");
+                      }
+                    })
+                    .catch((error) =>
+                      console.error("Error deleting booking:", error)
+                    );
+                }
+              });
+            });
+          }
         })
         .catch((error) =>
           console.error("Error fetching completed bookings:", error)
         );
     </script>
+
+    <style>
+      .paid-status {
+        color: green;
+        font-weight: bold;
+      }
+
+      #olderBookingList li {
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 5px;
+      }
+
+      .booking-details {
+        margin-bottom: 10px;
+      }
+
+      .booking-action {
+        text-align: right;
+      }
+
+      .delete-btn {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+    </style>
   </body>
 </html>

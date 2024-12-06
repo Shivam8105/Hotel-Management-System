@@ -12,7 +12,7 @@ const emailSchema = new mongoose.Schema({
   checkout_date: { type: Date },
   name: { type: String },
   room_price: { type: String },
-  isPaid: { type: Boolean },
+  isPaid: { type: Boolean, default: false },
 });
 
 // Create model from the schema
