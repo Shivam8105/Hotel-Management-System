@@ -70,17 +70,35 @@
       </section>
     </main>
     <script>
-      fetch('php/get_bookings.php')
-.then(response => response.json())
-.then(data => {
-    const bookingList = document.getElementById('bookingList');
-    data.forEach(booking => {
-        const li = document.createElement('li');
-        li.textContent = `Room Type: ${booking.room_type}, Check-In: ${booking.checkin_date}, Check-Out: ${booking.checkout_date}`;
-        bookingList.appendChild(li);
-    });
-})
-.catch(error => console.error('Error fetching bookings:', error));
+      // Fetch bookings from the backend (Node.js server)
+      fetch('http://localhost:8107/booking')  // Make sure the API is available on the correct endpoint
+        .then(response => response.json())   // Parse the JSON response
+        .then(data => {
+            const bookingList = document.getElementById('bookingList');
+            if (data.length === 0) {
+                const noBookingsMessage = document.createElement('li');
+                noBookingsMessage.textContent = 'You have no bookings.';
+                bookingList.appendChild(noBookingsMessage);
+            } else {
+                // Loop through each booking and display it in the list
+                data.forEach(booking => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <strong>Room Type:</strong> ${booking.room_type} <br>
+                        <strong>Check-In:</strong> ${new Date(booking.checkin_date).toLocaleDateString()} <br>
+                        <strong>Check-Out:</strong> ${new Date(booking.checkout_date).toLocaleDateString()} <br>
+                    `;
+                    bookingList.appendChild(li);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching bookings:', error);
+            const bookingList = document.getElementById('bookingList');
+            const errorMessage = document.createElement('li');
+            errorMessage.textContent = 'Failed to load bookings. Please try again later.';
+            bookingList.appendChild(errorMessage);
+        });
     </script>
   </body>
 </html>
