@@ -3,17 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Radisson Blu Hotel Account Registration">
     <link rel="stylesheet" href="css/register.css">
     <title>Register - Radisson Blu Hotel</title>
 </head>
 <body>
     <div class="form-container">
         <h1>Create Account</h1>
-        <form id="registrationForm">
-            <input type="text" id="regName" name="name" placeholder="Full Name" required>
-            <input type="email" id="regEmail" name="email" placeholder="Email" required>
-            <input type="password" id="regPassword" name="password" placeholder="Password" required>
-            <input type="password" id="confirmPassword" name="confirm_password" placeholder="Confirm Password" required>
+        <form id="registrationForm" novalidate>
+            <input 
+                type="text" 
+                id="regName" 
+                name="name" 
+                placeholder="Full Name" 
+                required 
+                minlength="2" 
+                maxlength="50"
+                pattern="[a-zA-Z\s'-]+"
+            >
+            <input 
+                type="email" 
+                id="regEmail" 
+                name="email" 
+                placeholder="Email" 
+                required 
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+            >
+            <input 
+                type="password" 
+                id="regPassword" 
+                name="password" 
+                placeholder="Password" 
+                required 
+                minlength="8"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+            >
+            <input 
+                type="password" 
+                id="confirmPassword" 
+                name="confirm_password" 
+                placeholder="Confirm Password" 
+                required 
+                minlength="8"
+            >
             <button type="submit">Register</button>
             <p>Already have an account? <a href="login.html">Login here</a></p>
         </form>

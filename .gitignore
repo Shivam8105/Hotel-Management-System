@@ -1,0 +1,15 @@
+notes.txt
+
+/email-server/.env
+
+/email-server/node_modules
+
+/server
+
+/vendor
+
+/composer.json
+/composer.lock
+
+/node_modules
+
