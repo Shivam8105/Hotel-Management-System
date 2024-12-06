@@ -39,7 +39,6 @@ CREATE TABLE Bookings (
     FOREIGN KEY (room_id) REFERENCES Rooms(room_id)
 );
 
--- Check-In Details Table
 CREATE TABLE CheckInDetails (
     check_in_id INT PRIMARY KEY AUTO_INCREMENT,
     booking_id INT UNIQUE NOT NULL,

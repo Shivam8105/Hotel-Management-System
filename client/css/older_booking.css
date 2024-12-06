@@ -1,22 +1,23 @@
-*{
+* {
     text-decoration: none;
     box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
     background-color: #121212;
     color: #ffffff;
-  }
+    line-height: 1.6;
+}
 
-  .wrapper {
+.wrapper {
     display: flex;
     min-height: 100vh;
-  }
+}
 
-  .sidebar {
+.sidebar {
     width: 280px;
     background: linear-gradient(145deg, #1c1c1c, #141414);
     border-top-right-radius: 35px;
@@ -30,76 +31,80 @@
     top: 0;
     bottom: 0;
     overflow-y: auto;
-  }
+}
 
-  .profile {
+.profile {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin-bottom: 2.5rem;
-  }
+}
 
-  .profile-image {
-    /* width: 45px;
-    height: 45px; */
+.profile-image {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.2);
-  }
+    overflow: hidden;
+}
 
-  #img-id{
-    position: relative;
-    top: 2px;
-    height: 50px;
+/* .profile-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    background-position: center;
+} */
+
+
+#img-id{
+    position: relative;
+    height: 50px;
     border-radius: 50%;
 }
 
-
-  .profile-info h2 {
+.profile-info h2 {
     font-size: 1.1rem;
     font-weight: 600;
-    margin: 0;
-  }
+    /* margin-top: 12px; */
+}
 
-  .profile-info p {
+.profile-info p {
     font-size: 0.9rem;
     opacity: 0.7;
-    margin: 0.10rem 0 0;
-  }
+    margin-top: -5px;
+}
 
-  .nav-menu {
+.nav-menu {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-  }
+}
 
-  .nav-item {
+.nav-item {
     color: #b0a7ff;
     background-color: rgba(176, 167, 255, 0.08);
     border-radius: 10px;
-    padding: 0.75rem 1rem;
+    padding: 0.55rem 1rem;
     transition: background-color 0.3s ease, color 0.3s ease;
-  }
+}
 
-  .nav-item:hover,
-  .nav-item.active{
+.nav-item:hover,
+.nav-item.active {
     background-color: rgba(176, 167, 255, 0.3);
     color: #e0e0e0;
-  }
+}
 
-  .nav-item a {
+.nav-item a {
     color: inherit;
     display: flex;
     align-items: center;
     gap: 0.75rem;
-  }
+}
 
-  .logout {
+.logout {
     margin-top: auto;
-  }
+}
 
-  .logout a {
+.logout a {
     color: #FF6B6B;
   }
 
@@ -108,40 +113,49 @@
     color: white;
   }
 
-  .booking-summary {
-    margin-left: 380px;
-    padding: 2rem;
-    width: calc(100% - 380px);
-  }
 
-  .booking-summary h2 {
+.older-bookings {
+    margin-left: 280px;
+    padding: 2rem;
+    width: calc(100% - 280px);
+    background-color: #1e1e1e;
+}
+
+.older-bookings h2 {
     font-size: 1.8em;
     color: #b0a7ff;
     margin-bottom: 20px;
-  }
+}
 
-  #bookingTable {
-    width: 100%;
-    border-collapse: collapse;
+#olderBookingList {
+    list-style-type: none;
+}
+
+#olderBookingList li {
     background-color: rgba(176, 167, 255, 0.08);
     border-radius: 10px;
-    overflow: hidden;
-  }
-
-  #bookingTable thead {
-    background-color: rgba(176, 167, 255, 0.2);
-  }
-
-  #bookingTable th, 
-  #bookingTable td {
     padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    color: #ffffff;
-  }
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
 
-  .delete-btn, 
-  .complete-btn {
+#olderBookingList li:hover {
+    background-color: rgba(176, 167, 255, 0.15);
+}
+
+.booking-details {
+    flex-grow: 1;
+}
+
+.booking-action {
+    display: flex;
+    gap: 10px;
+}
+
+.view-details-btn {
     background-color: #b0a7ff;
     color: white;
     border: none;
@@ -149,37 +163,34 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-  }
+}
 
-  .delete-btn {
-    background-color: #ff6b6b;
-  }
-
-  .complete-btn {
-    background-color: #4ecdc4;
-    margin-left: 10px;
-  }
-
-  .delete-btn:hover, 
-  .complete-btn:hover {
+.view-details-btn:hover {
     opacity: 0.9;
     transform: scale(1.05);
-  }
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     .sidebar {
-      width: 100%;
-      height: auto;
-      position: static;
-      border-radius: 0;
+        width: 100%;
+        height: auto;
+        position: static;
+        border-radius: 0;
     }
 
-    .booking-summary {
-      margin-left: 0;
-      width: 100%;
+    .older-bookings {
+        margin-left: 0;
+        width: 100%;
     }
 
-    #bookingTable {
-      font-size: 0.9em;
+    #olderBookingList li {
+        flex-direction: column;
+        align-items: flex-start;
     }
-  }
+
+    .booking-action {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 10px;
+    }
+}

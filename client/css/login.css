@@ -1,4 +1,3 @@
-/* Global reset */
 * {
     margin: 0;
     padding: 0;
@@ -83,7 +82,6 @@ body {
     text-decoration: underline;
 }
 
-/* Responsive Design */
 @media (max-width: 500px) {
     .form-container {
         width: 90%;
