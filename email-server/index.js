@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 
 // POST route to send an email and save booking details
 app.post("/email", async (req, res) => {
-  const { to, subject, text, room_type, checkin_date, checkout_date } = req.body;
+  const { to, subject, text, room_type, checkin_date, checkout_date, name, room_price } = req.body;
 
   const mailOptions = {
     from: process.env.EMAIL_USER,  // Sender email
@@ -53,7 +53,9 @@ app.post("/email", async (req, res) => {
       text,
       room_type,
       checkin_date: new Date(checkin_date),  // Save as Date
-      checkout_date: new Date(checkout_date) // Save as Date
+      checkout_date: new Date(checkout_date), // Save as Date
+      name,
+      room_price,
     });
 
     await email.save();
@@ -67,15 +69,30 @@ app.post("/email", async (req, res) => {
 });
 
 // GET route to fetch all bookings
+// GET route to fetch all bookings and return required fields
 app.get('/booking', async (req, res) => {
   try {
-    const bookings = await Email.find(); // Fetch all email records (bookings)
-    res.status(200).json(bookings);
+    // Fetch all bookings with necessary fields (Name, Email, Room Type, Check-In Date, Check-Out Date, Room Price)
+    const bookings = await Email.find({}, 'name to room_type checkin_date checkout_date room_price');
+
+    // Format the response data
+    const formattedBookings = bookings.map(booking => ({
+      name: booking.name,
+      email: booking.to,  // 'to' is the email field
+      room_type: booking.room_type,
+      checkin_date: booking.checkin_date.toISOString().split('T')[0],  // Format date as YYYY-MM-DD
+      checkout_date: booking.checkout_date.toISOString().split('T')[0],  // Format date as YYYY-MM-DD
+      room_price: booking.room_price
+    }));
+
+    // Send the formatted bookings
+    res.status(200).json(formattedBookings);
   } catch (error) {
     console.error('Error fetching bookings:', error);
     res.status(500).json({ message: 'Error fetching bookings' });
   }
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

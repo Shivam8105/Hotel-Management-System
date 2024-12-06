@@ -39,9 +39,11 @@ document.getElementById('checkin-form').addEventListener('submit', async (event)
         to: email,            // The recipient's email
         subject: subject,     // Subject of the email
         text: text,           // Email body content
-        room_type: roomType,  // Room type from the form
-        checkin_date: checkinDate, // Check-in date from the form
-        checkout_date: checkoutDate // Check-out date from the form
+        name: name,           // Name from form
+        room_type: roomType,  // Room type
+        room_price: roomPrice, // Room price
+        checkin_date: checkinDate,  // Check-in date
+        checkout_date: checkoutDate  // Check-out date
     };
 
     // Send the booking details to the server via POST request

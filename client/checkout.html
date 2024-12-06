@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/checkout.css" />
-    <title>Check-Out</title>
+    <title>Bookings</title>
     <style>
       .booking-summary table {
         width: 100%;
@@ -70,13 +70,13 @@
               <span>Rooms</span>
             </a>
           </div>
-          <div class="nav-item">
+          <div class="nav-item active">
             <a href="bookings.html">
               <i class="icon">📝</i>
               <span>Bookings</span>
             </a>
           </div>
-          <div class="nav-item active">
+          <div class="nav-item">
             <a href="checkout.html">
               <i class="icon">✅</i>
               <span>Payments</span>
@@ -127,17 +127,49 @@
     </div>
 
     <script>
-      function completeBooking(bookingId) {
+      // Fetch the booking data from the API
+      fetch('http://localhost:8107/booking')
+        .then(response => response.json())
+        .then(data => {
+          const bookingSummaryBody = document.getElementById('bookingSummaryBody');
+          
+          if (data.length === 0) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td colspan="7" style="text-align: center;">No active bookings found.</td>
+            `;
+            bookingSummaryBody.appendChild(row);
+          } else {
+            data.forEach(booking => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${booking.name}</td>
+                <td>${booking.email}</td>
+                <td>${booking.room_type}</td>
+                <td>${booking.checkin_date}</td>
+                <td>${booking.checkout_date}</td>
+                <td>${booking.room_price}</td>
+                <td>
+                  <button class="delete-btn" onclick="deleteBooking('${booking.email}')">Delete</button>
+                  <button class="complete-btn" onclick="completeBooking('${booking.email}')">Complete</button>
+                </td>
+              `;
+              bookingSummaryBody.appendChild(row);
+            });
+          }
+        })
+        .catch(error => console.error('Error fetching active bookings:', error));
+
+      // Function to complete a booking
+      function completeBooking(bookingEmail) {
         const messageContainer = document.getElementById('messageContainer');
         
-        // Create form data
-        const formData = new FormData();
-        formData.append('booking_id', bookingId);
-
-        // Send request to complete booking
-        fetch('php/complete_booking.php', {
+        fetch('http://localhost:8107/completeBooking', {
           method: 'POST',
-          body: formData
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: bookingEmail })
         })
         .then(response => response.json())
         .then(result => {
@@ -147,12 +179,6 @@
                 ${result.message}. Redirecting to Older Bookings...
               </div>
             `;
-            
-            // Remove the completed booking row
-            const rowToRemove = document.querySelector(`button[data-id="${bookingId}"]`).closest('tr');
-            rowToRemove.remove();
-
-            // Redirect to older bookings after 2 seconds
             setTimeout(() => {
               window.location.href = 'older_bookings.html';
             }, 2000);
@@ -173,84 +199,47 @@
         });
       }
 
-      function deleteBooking(bookingId) {
-  const messageContainer = document.getElementById('messageContainer');
-  
-  // Confirm deletion
-  if (!confirm('Are you sure you want to delete this booking?')) {
-    return;
-  }
-
-  // Create form data
-  const formData = new FormData();
-  formData.append('booking_id', bookingId);
-
-  // Send request to delete booking
-  fetch('php/delete_booking.php', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(result => {
-    if (result.status === 'success') {
-      messageContainer.innerHTML = `
-        <div class="success">
-          ${result.message}.
-        </div>
-      `;
-      
-      // Remove the deleted booking row
-      const rowToRemove = document.querySelector(`button[data-id="${bookingId}"]`).closest('tr');
-      rowToRemove.remove();
-    } else {
-      messageContainer.innerHTML = `
-        <div class="error">
-          ${result.message}
-        </div>
-      `;
-    }
-  })
-  .catch(error => {
-    messageContainer.innerHTML = `
-      <div class="error">
-        Error: ${error.message}
-      </div>
-    `;
-  });
-}
-
-
-      fetch('php/get_active_bookings.php')
-      .then(response => response.json())
-      .then(data => {
-        const bookingSummaryBody = document.getElementById('bookingSummaryBody');
+      // Function to delete a booking
+      function deleteBooking(bookingEmail) {
+        const messageContainer = document.getElementById('messageContainer');
         
-        if (data.length === 0) {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td colspan="7" style="text-align: center;">No active bookings found.</td>
-          `;
-          bookingSummaryBody.appendChild(row);
-        } else {
-          data.forEach(booking => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-              <td>${booking.name}</td>
-              <td>${booking.email}</td>
-              <td>${booking.room_type}</td>
-              <td>${booking.checkin_date}</td>
-              <td>${booking.checkout_date}</td>
-              <td>$${booking.room_price}</td>
-              <td>
-                <button class="delete-btn" data-id="${booking.id}" onclick="deleteBooking(${booking.id})">Delete</button>
-                <button class="complete-btn" data-id="${booking.id}" onclick="completeBooking(${booking.id})">Complete</button>
-              </td>
-            `;
-            bookingSummaryBody.appendChild(row);
-          });
+        if (!confirm('Are you sure you want to delete this booking?')) {
+          return;
         }
-      })
-      .catch(error => console.error('Error fetching active bookings:', error));
+
+        fetch('http://localhost:8107/deleteBooking', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: bookingEmail })
+        })
+        .then(response => response.json())
+        .then(result => {
+          if (result.status === 'success') {
+            messageContainer.innerHTML = `
+              <div class="success">
+                ${result.message}.
+              </div>
+            `;
+            // Refresh the page to update the booking list
+            location.reload();
+          } else {
+            messageContainer.innerHTML = `
+              <div class="error">
+                ${result.message}
+              </div>
+            `;
+          }
+        })
+        .catch(error => {
+          messageContainer.innerHTML = `
+            <div class="error">
+              Error: ${error.message}
+            </div>
+          `;
+        });
+      }
     </script>
   </body>
 </html>
