@@ -73,7 +73,7 @@
         <div class="stats-container">
           <div class="stat-card">
             <h3>Available Rooms</h3>
-            <div class="stat-value" id="available-rooms">0</div>
+            <div class="stat-value" id="available-rooms">30</div>
             <div class="stat-label">Out of 30 Total Rooms</div>
           </div>
           <div class="stat-card">
@@ -149,13 +149,15 @@
     </div>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        fetch("php/get_bookings.php")
+        fetch("http://localhost:8107/booking")
           .then((response) => response.json())
-          .then((data) => {
+          .then((bookings) => {
             const totalRooms = 30;
-            const bookings = data;
             const today = new Date();
             const todayString = today.toISOString().split("T")[0];
+            const twentyFourHoursAgo = new Date(
+              today.getTime() - 24 * 60 * 60 * 1000
+            );
 
             let todaysCheckins = 0;
             let todaysCheckouts = 0;
@@ -167,59 +169,70 @@
             );
             recentBookingsBody.innerHTML = "";
 
-            bookings.forEach((booking) => {
+            // Sort bookings by check-in date, most recent first
+            const sortedBookings = bookings.sort(
+              (a, b) => new Date(b.checkin_date) - new Date(a.checkin_date)
+            );
+
+            // Limit to most recent 5 bookings, ensuring total bookings don't exceed 30
+            const displayBookings = sortedBookings.slice(
+              0,
+              Math.min(5, totalRooms - bookedRooms)
+            );
+
+            displayBookings.forEach((booking) => {
               const checkInDate = new Date(booking.checkin_date);
               const checkOutDate = new Date(booking.checkout_date);
               const checkInDateString = checkInDate.toISOString().split("T")[0];
               const checkOutDateString = checkOutDate
                 .toISOString()
                 .split("T")[0];
+
               bookedRooms++;
+
               if (checkInDateString === todayString) {
                 todaysCheckins++;
-                if (booking.booking_status === "pending") {
-                  pendingCheckins++;
-                }
               }
 
               if (checkOutDateString === todayString) {
                 todaysCheckouts++;
               }
-              const bookingDate = new Date(booking.booking_date);
-              const hoursDiff = (today - bookingDate) / (1000 * 60 * 60);
-              if (hoursDiff <= 24) {
+
+              const bookingDate = new Date(booking.checkin_date);
+              if (bookingDate >= twentyFourHoursAgo) {
                 newBookings++;
               }
+
               const row = `
-                    <tr>
-                        <td>${booking.name || "N/A"}</td>
-                        <td>${booking.room_type || "N/A"}</td>
-                        <td>${booking.checkin_date}</td>
-                        <td>${booking.checkout_date}</td>
-                        <td><span class="status-${(
-                          booking.booking_status || "unknown"
-                        ).toLowerCase()}">${
-                booking.booking_status || "Unknown"
+          <tr>
+            <td>${booking.name || "N/A"}</td>
+            <td>${booking.room_type || "N/A"}</td>
+            <td>${booking.checkin_date}</td>
+            <td>${booking.checkout_date}</td>
+            <td><span class="status-${booking.isPaid ? "paid" : "pending"}">${
+                booking.isPaid ? "Paid" : "Pending"
               }</span></td>
-                        <td><button class="action-btn" data-booking-id="${
-                          booking.id
-                        }">Check Out</button></td>
-                    </tr>
-                `;
+            <td><button class="action-btn" data-booking-id="${
+              booking._id
+            }">Check Out</button></td>
+          </tr>
+        `;
               recentBookingsBody.innerHTML += row;
             });
+
+            // Update dashboard statistics
             const availableRooms = totalRooms - bookedRooms;
-            document.getElementById("available-rooms").textContent =
-              availableRooms;
+            document.getElementById("available-rooms").textContent = Math.max(
+              0,
+              availableRooms
+            );
             document.getElementById("todays-checkins").textContent =
-              todaysCheckins;
-            document.getElementById("pending-checkins").textContent =
-              pendingCheckins;
+              bookedRooms;
             document.getElementById("todays-checkouts").textContent =
               todaysCheckouts;
-            document.getElementById("completed-checkouts").textContent =
-              todaysCheckouts;
             document.getElementById("new-bookings").textContent = newBookings;
+
+            // Add event listeners to action buttons
             const actionButtons = document.querySelectorAll(".action-btn");
             actionButtons.forEach((button) => {
               button.addEventListener("click", function () {
@@ -233,6 +246,7 @@
                 const checkOutDate =
                   row.querySelector("td:nth-child(4)").textContent;
                 const bookingId = this.getAttribute("data-booking-id");
+
                 window.location.href = `checkout.html?name=${encodeURIComponent(
                   guestName
                 )}&room_type=${encodeURIComponent(
